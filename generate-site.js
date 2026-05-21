@@ -3,9 +3,11 @@ const path = require("path");
 
 const ROOT = __dirname;
 const EMAIL = "chris@southwestjunkhauling.com";
-const PHONE_DISPLAY = "602-732-6180";
-const PHONE_HREF = "tel:+16027326180";
+const PHONE_DISPLAY = "480-490-8033";
+const PHONE_HREF = "tel:+14804908033";
 const QUOTE = `mailto:${EMAIL}?subject=Free%20Junk%20Removal%20Quote%20Request`;
+const TAGLINE = "You Call It, We'll Haul It";
+const MISSION = "Southwest Hauling helps homeowners and businesses across the East Valley clear clutter quickly, professionally, and responsibly through reliable hauling, junk removal, cleanouts, and property cleanup services.";
 
 const services = [
   ["furniture-removal-east-valley-az", "Furniture Removal", "Furniture removal in the East Valley, AZ", "Fast pickup for couches, sectionals, tables, bedroom sets, desks, patio furniture, and bulky household items."],
@@ -82,7 +84,7 @@ function schema(type, title, description) {
     "@type": "LocalBusiness",
     name: "Southwest Hauling & Junk Removal",
     email: EMAIL,
-    telephone: "+1-602-732-6180",
+    telephone: "+1-480-490-8033",
     image: "https://southwestjunkhauling.com/assets/southwest-logo.png",
     areaServed: cities.map((city) => `${city[1]} AZ`),
     description,
@@ -207,6 +209,9 @@ function layout({ title, description, h1, intro, main, type = "page" }) {
     <meta property="og:description" content="${esc(description)}">
     <meta property="og:type" content="website">
     <meta property="og:image" content="/assets/southwest-logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
     <script defer src="/script.js"></script>
     ${schema(type, title, description)}
@@ -219,6 +224,7 @@ function layout({ title, description, h1, intro, main, type = "page" }) {
         <div class="hero-content">
           <p class="service-area">East Valley of Phoenix, Arizona</p>
           <h1>${esc(h1)}</h1>
+          <p class="tagline">${esc(TAGLINE)}</p>
           <p class="local-intro">${esc(intro)}</p>
           <div class="hero-actions">
             <a class="button primary" href="${QUOTE}">Get Free Quote</a>
@@ -249,6 +255,9 @@ function home() {
   const main = `<section class="trust-strip" aria-label="Trust badges">
       ${trustBadges.map((badge) => `<div><strong>${esc(badge)}</strong><span>Southwest Hauling & Junk Removal</span></div>`).join("")}
     </section>
+    <section class="section brand-statement">
+      <p>${esc(MISSION)}</p>
+    </section>
     <section class="section services" id="services">
       <div class="section-heading">
         <h2>Junk removal services</h2>
@@ -261,28 +270,28 @@ function home() {
     ${beforeAfter()}
     <section class="section split">
       <div>
-        <h2>Why choose Southwest Hauling?</h2>
+        <h2>Dependable hauling with a local handshake feel</h2>
         <ul class="check-list">
-          <li>We show up on time.</li>
-          <li>We do the heavy lifting.</li>
-          <li>We give honest pricing.</li>
-          <li>We leave your space clean.</li>
-          <li>We serve the East Valley locally.</li>
+          <li>Fast response for homes, businesses, and property managers.</li>
+          <li>Hard-working crew that handles lifting, loading, and cleanup.</li>
+          <li>Honest pricing before the work begins.</li>
+          <li>Responsible disposal and donation focus whenever practical.</li>
+          <li>Locally owned service rooted in Queen Creek and the East Valley.</li>
         </ul>
       </div>
       <div class="service-card">
-        <h3>From single items to full cleanouts</h3>
-        <p>Fast response, affordable pricing, and donation and disposal focused service for homes and businesses.</p>
+        <h3>You call it, we'll haul it</h3>
+        <p>From one bulky item to a full property cleanout, Southwest Hauling keeps the job simple, clear, and handled.</p>
         <a class="button primary" href="${QUOTE}">Get Free Quote</a>
-        <a class="contact-link" href="mailto:${EMAIL}">Contact Chris</a>
+        <a class="contact-link" href="${PHONE_HREF}">Call ${PHONE_DISPLAY}</a>
       </div>
     </section>`;
   return layout({
     type: "home",
     title: "East Valley Junk Removal & Hauling | Southwest Hauling",
     description: "Fast, affordable junk removal for homes, businesses, garages, storage units, yards, rentals, and full property cleanouts across Mesa, Gilbert, Chandler, Queen Creek, Tempe, Scottsdale, and the East Valley.",
-    h1: "East Valley Junk Removal & Hauling Made Simple",
-    intro: "Fast, affordable junk removal for homes, businesses, garages, storage units, yards, rentals, and full property cleanouts across Mesa, Gilbert, Chandler, Queen Creek, Tempe, Scottsdale, and the East Valley.",
+    h1: "East Valley Junk Removal With Southwest Grit",
+    intro: "Fast, affordable hauling for homes, businesses, garages, storage units, yards, rentals, and full property cleanouts across Mesa, Gilbert, Chandler, Queen Creek, Tempe, Scottsdale, and the East Valley.",
     main
   });
 }
@@ -355,7 +364,7 @@ function aboutPage() {
   const main = `<section class="section split">
       <div>
         <h2>Locally owned. Community focused.</h2>
-        <p>Southwest Hauling & Junk Removal was built around honest and affordable service. We help neighbors, businesses, property managers, and families clear unwanted items without the stress.</p>
+        <p>${esc(MISSION)}</p>
         <ul class="check-list">
           <li>Reliable junk hauling with respectful cleanup</li>
           <li>Donation and disposal focused whenever practical</li>
@@ -365,7 +374,7 @@ function aboutPage() {
       </div>
       <div class="service-card">
         <h3>Talk with Chris</h3>
-        <p>Send details about the items, address, city, and timing. Photos help us quote faster.</p>
+        <p>Send details about the items, address, city, and timing. Photos help us quote faster, or call ${PHONE_DISPLAY}.</p>
         <a class="button primary" href="${QUOTE}">Get Free Quote</a>
         <a class="contact-link" href="mailto:${EMAIL}">Contact Chris</a>
       </div>
@@ -374,7 +383,7 @@ function aboutPage() {
     title: "About Southwest Hauling & Junk Removal | East Valley AZ",
     description: "Learn about Southwest Hauling & Junk Removal, a locally owned, community focused East Valley junk hauling company offering honest pricing and fast response.",
     h1: "About Southwest Hauling",
-    intro: "Southwest Hauling is a locally owned junk removal and hauling company serving the East Valley with fast response, affordable pricing, and respectful cleanup for single items, yards, garages, storage units, businesses, and full property cleanouts.",
+    intro: "Dependable, fast, local, hard-working, honest, and rugged but approachable: Southwest Hauling serves the East Valley with respectful cleanup for single items, yards, garages, storage units, businesses, and full property cleanouts.",
     main
   });
 }
