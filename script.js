@@ -42,6 +42,7 @@ document.querySelectorAll(".project-card").forEach((card) => {
 
 const hero = document.querySelector(".hero");
 const heroContent = document.querySelector(".hero-content");
+const heroVideo = document.querySelector(".hero-video");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 if (hero && heroContent && !reduceMotion.matches) {
@@ -62,6 +63,56 @@ if (hero && heroContent && !reduceMotion.matches) {
     hero.style.setProperty("--hero-y", "42%");
     heroContent.style.transform = "";
   });
+}
+
+if (hero && heroVideo) {
+  let heroVideoDuration = 0;
+  let heroTicking = false;
+
+  const clampHeroProgress = (value) => Math.min(Math.max(value, 0), 1);
+
+  const updateHeroScroll = () => {
+    const rect = hero.getBoundingClientRect();
+    const scrollable = rect.height - window.innerHeight;
+    const progress = scrollable > 0 ? clampHeroProgress(-rect.top / scrollable) : 0;
+    const duration = heroVideoDuration || heroVideo.duration || 0;
+
+    hero.style.setProperty("--hero-progress", progress.toFixed(3));
+
+    if (!reduceMotion.matches && duration && heroVideo.seekable.length) {
+      try {
+        heroVideo.currentTime = duration * progress;
+      } catch {
+        // The browser may need one more metadata pass before accepting seeks.
+      }
+    }
+
+    heroTicking = false;
+  };
+
+  const requestHeroUpdate = () => {
+    if (!heroTicking) {
+      window.requestAnimationFrame(updateHeroScroll);
+      heroTicking = true;
+    }
+  };
+
+  heroVideo.addEventListener("loadedmetadata", () => {
+    heroVideoDuration = heroVideo.duration || 0;
+    heroVideo.pause();
+    updateHeroScroll();
+  });
+
+  heroVideo.addEventListener("canplay", () => {
+    heroVideo.pause();
+  });
+
+  window.addEventListener("scroll", requestHeroUpdate, { passive: true });
+  window.addEventListener("resize", requestHeroUpdate);
+  if (heroVideo.readyState) {
+    heroVideoDuration = heroVideo.duration || 0;
+  }
+  updateHeroScroll();
 }
 
 const sequence = document.querySelector(".scroll-sequence");
