@@ -328,14 +328,12 @@ a {
 
 .hero-media::after {
   position: absolute;
-  right: 0;
-  bottom: 0;
-  width: min(22vw, 260px);
-  height: min(18vh, 180px);
+  inset: 0;
   pointer-events: none;
   background:
-    linear-gradient(135deg, transparent, rgba(23, 21, 18, 0.62) 46%, rgba(23, 21, 18, 0.96)),
-    radial-gradient(circle at 100% 100%, rgba(23, 21, 18, 0.98), transparent 72%);
+    radial-gradient(ellipse at 100% 100%, rgba(23, 21, 18, 0.96) 0 6rem, rgba(23, 21, 18, 0.64) 11rem, transparent 19rem),
+    linear-gradient(180deg, rgba(23, 21, 18, 0.28), transparent 24%, transparent 72%, rgba(23, 21, 18, 0.36)),
+    linear-gradient(90deg, rgba(23, 21, 18, 0.48), transparent 28%, transparent 72%, rgba(23, 21, 18, 0.5));
   content: "";
 }
 
@@ -372,8 +370,7 @@ a {
   padding: clamp(30px, 6vw, 58px) clamp(18px, 5vw, 52px);
   border: 0;
   border-radius: 0;
-  background:
-    radial-gradient(circle at 50% 52%, rgba(23, 21, 18, 0.56), rgba(23, 21, 18, 0.24) 42%, transparent 72%);
+  background: transparent;
   box-shadow: none;
   text-align: center;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.78), 0 1px 2px rgba(0, 0, 0, 0.82);
@@ -1655,8 +1652,10 @@ details p {
   }
 
   .hero-media::after {
-    width: 42vw;
-    height: 20vh;
+    background:
+      radial-gradient(ellipse at 100% 100%, rgba(23, 21, 18, 0.96) 0 5.5rem, rgba(23, 21, 18, 0.62) 9.5rem, transparent 16rem),
+      linear-gradient(180deg, rgba(23, 21, 18, 0.22), transparent 22%, transparent 72%, rgba(23, 21, 18, 0.34)),
+      linear-gradient(90deg, rgba(23, 21, 18, 0.42), transparent 34%, transparent 70%, rgba(23, 21, 18, 0.46));
   }
 
   .hero-scroll-meter {
