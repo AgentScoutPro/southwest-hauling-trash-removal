@@ -107,7 +107,7 @@ if (hero && heroVideo) {
   const clampHeroProgress = (value) => Math.min(Math.max(value, 0), 1);
 
   const seekHeroVideo = (time) => {
-    if (reduceMotion.matches || !heroVideoDuration || !heroVideo.seekable.length) return;
+    if (reduceMotion.matches || !heroVideoDuration) return;
 
     try {
       heroVideo.currentTime = time;
@@ -120,7 +120,7 @@ if (hero && heroVideo) {
   const scrubHeroVideo = () => {
     heroScrubFrame = 0;
 
-    if (reduceMotion.matches || !heroVideoDuration || !heroVideo.seekable.length) return;
+    if (reduceMotion.matches || !heroVideoDuration) return;
 
     const delta = heroTargetTime - heroRenderedTime;
 
@@ -129,8 +129,8 @@ if (hero && heroVideo) {
       return;
     }
 
-    const maxStep = coarsePointer.matches ? 0.06 : 0.085;
-    const easing = coarsePointer.matches ? 0.08 : 0.1;
+    const maxStep = coarsePointer.matches ? 0.11 : 0.16;
+    const easing = coarsePointer.matches ? 0.14 : 0.18;
     const easedStep = delta * easing;
     const nextStep = Math.max(Math.min(easedStep, maxStep), -maxStep);
 
@@ -147,7 +147,8 @@ if (hero && heroVideo) {
   const updateHeroScroll = () => {
     const rect = hero.getBoundingClientRect();
     const scrollable = rect.height - window.innerHeight;
-    const progress = scrollable > 0 ? clampHeroProgress(-rect.top / scrollable) : 0;
+    const scrubDistance = scrollable > 0 ? scrollable * (coarsePointer.matches ? 0.82 : 0.76) : 0;
+    const progress = scrubDistance > 0 ? clampHeroProgress((-rect.top + 1) / scrubDistance) : 0;
     const duration = heroVideoDuration || heroVideo.duration || 0;
 
     hero.style.setProperty("--hero-progress", progress.toFixed(3));

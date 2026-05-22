@@ -265,7 +265,7 @@ a {
 .hero {
   position: relative;
   display: block;
-  min-height: clamp(820px, 126dvh, 1120px);
+  min-height: max(980px, 180dvh);
   background: var(--charcoal);
   color: #fff8eb;
   margin-top: 0;
@@ -365,9 +365,9 @@ a {
   z-index: 1;
   display: grid;
   justify-items: center;
-  width: min(1080px, calc(100% - 36px));
+  width: min(1780px, calc(100% - 72px));
   margin: -80dvh auto 0;
-  padding: clamp(30px, 6vw, 58px) clamp(18px, 5vw, 52px);
+  padding: clamp(30px, 6vw, 58px) clamp(18px, 4vw, 52px);
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -403,6 +403,13 @@ h1 {
   text-wrap: balance;
 }
 
+.hero h1 {
+  max-width: min(1680px, calc(100vw - 96px));
+  margin-bottom: clamp(18px, 2vw, 26px);
+  font-size: clamp(64px, 7.2vw, 136px);
+  line-height: 0.92;
+}
+
 h2 {
   margin-bottom: 10px;
   font-family: Archivo, "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
@@ -429,7 +436,7 @@ h3 {
 }
 
 .hero p:not(.service-area) {
-  max-width: 660px;
+  max-width: 1160px;
   color: rgba(255, 255, 255, 0.88);
 }
 
@@ -437,10 +444,19 @@ h3 {
   display: none !important;
 }
 
-.hero .local-intro,
 .hero > .hero-content > .hero-actions,
 .hero .inline-links {
   display: none !important;
+}
+
+.hero .local-intro {
+  display: block !important;
+  margin: clamp(22px, 2.4vw, 34px) auto 0;
+  color: rgba(255, 248, 235, 0.86);
+  font-size: clamp(20px, 2vw, 34px);
+  font-weight: 600;
+  line-height: 1.45;
+  text-wrap: balance;
 }
 
 .scroll-sequence {
@@ -1361,7 +1377,6 @@ details p {
 }
 
 @media (min-width: 680px) {
-  .hero-content,
   .section,
   .site-footer {
     padding-left: max(28px, calc((100vw - 1120px) / 2));
@@ -1389,11 +1404,11 @@ details p {
   }
 
   .hero {
-    min-height: clamp(820px, 126dvh, 1120px);
+    min-height: max(980px, 180dvh);
   }
 
   .compact-hero {
-    min-height: clamp(820px, 126dvh, 1120px);
+    min-height: max(980px, 180dvh);
   }
 
   .hero-media {
@@ -1643,7 +1658,7 @@ details p {
   }
 
   .hero {
-    min-height: 164dvh;
+    min-height: 185dvh;
   }
 
   .hero-video {
@@ -1668,6 +1683,13 @@ details p {
     line-height: 0.9;
   }
 
+  .hero h1 {
+    max-width: calc(100vw - 32px);
+    margin-bottom: 16px;
+    font-size: clamp(44px, 12vw, 58px);
+    line-height: 0.94;
+  }
+
   .tagline {
     font-size: clamp(18px, 5.7vw, 24px);
     line-height: 1.05;
@@ -1675,6 +1697,13 @@ details p {
 
   .hero p:not(.service-area) {
     font-size: 16px;
+  }
+
+  .hero .local-intro {
+    max-width: calc(100vw - 46px);
+    margin-top: 18px;
+    font-size: clamp(17px, 4.8vw, 20px);
+    line-height: 1.42;
   }
 
   .inline-links {
