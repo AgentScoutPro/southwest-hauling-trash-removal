@@ -10,14 +10,19 @@ const TAGLINE = "You Call It, We'll Haul It";
 const MISSION = "Southwest Hauling helps homeowners and businesses across the East Valley clear clutter quickly, professionally, and responsibly through reliable hauling, junk removal, cleanouts, and property cleanup services.";
 
 const services = [
+  ["junk-removal-east-valley-az", "Junk Removal", "Junk removal in the East Valley, AZ", "General junk removal for household clutter, bulky items, garage piles, outdoor junk, and unwanted materials."],
+  ["garage-cleanout-east-valley-az", "Garage Cleanouts", "Garage cleanouts in the East Valley, AZ", "Clear clutter, boxes, old tools, storage piles, shelves, and household junk from your garage."],
   ["furniture-removal-east-valley-az", "Furniture Removal", "Furniture removal in the East Valley, AZ", "Fast pickup for couches, sectionals, tables, bedroom sets, desks, patio furniture, and bulky household items."],
   ["appliance-removal-east-valley-az", "Appliance Removal", "Appliance removal in the East Valley, AZ", "Washer, dryer, refrigerator, range, freezer, and bulky appliance removal with honest pricing."],
-  ["garage-cleanout-east-valley-az", "Garage Cleanouts", "Garage cleanouts in the East Valley, AZ", "Clear clutter, boxes, old tools, storage piles, shelves, and household junk from your garage."],
-  ["yard-debris-removal-east-valley-az", "Yard Debris Removal", "Yard debris removal in the East Valley, AZ", "Branches, trimmings, storm debris, outdoor clutter, and backyard cleanup loads hauled away."],
   ["property-cleanout-east-valley-az", "Property Cleanouts", "Property cleanouts in the East Valley, AZ", "Rental, move-out, foreclosure, estate, and full-property junk hauling for homes and businesses."],
-  ["storage-unit-cleanout-east-valley-az", "Storage Unit Cleanouts", "Storage unit cleanouts in the East Valley, AZ", "Empty storage units quickly so you can reclaim space and stop paying for things you no longer need."],
-  ["estate-cleanout-east-valley-az", "Estate Cleanouts", "Estate cleanouts in the East Valley, AZ", "Respectful estate cleanout help for furniture, boxes, garage items, yard debris, and full cleanouts."],
+  ["yard-waste-removal-east-valley-az", "Yard Waste Removal", "Yard waste removal in the East Valley, AZ", "Branches, trimmings, storm debris, outdoor clutter, and backyard cleanup loads hauled away."],
   ["construction-debris-removal-east-valley-az", "Construction Debris Removal", "Construction debris removal in the East Valley, AZ", "Light construction debris, remodel scraps, cardboard, packing debris, wood, and non-hazardous cleanup loads."],
+  ["hot-tub-removal-east-valley-az", "Hot Tub Removal", "Hot tub removal in the East Valley, AZ", "Hot tub, spa, and bulky outdoor item removal with heavy lifting, loading, and hauling handled for you."],
+  ["commercial-cleanouts-east-valley-az", "Commercial Cleanouts", "Commercial cleanouts in the East Valley, AZ", "Office, retail, warehouse, and business cleanouts for furniture, clutter, packing debris, and non-hazardous junk."],
+  ["estate-cleanout-east-valley-az", "Estate Cleanouts", "Estate cleanouts in the East Valley, AZ", "Respectful estate cleanout help for furniture, boxes, garage items, yard debris, and full cleanouts."],
+  ["moving-labor-assistance-east-valley-az", "Moving Labor Assistance", "Moving labor assistance in the East Valley, AZ", "Loading, lifting, and hauling help for moves, cleanouts, furniture pickups, and bulky item removal."],
+  ["trash-hauling-east-valley-az", "Trash Hauling", "Trash hauling in the East Valley, AZ", "Fast trash hauling for bagged waste, loose junk, cleanup piles, and non-hazardous debris."],
+  ["storage-unit-cleanout-east-valley-az", "Storage Unit Cleanouts", "Storage unit cleanouts in the East Valley, AZ", "Empty storage units quickly so you can reclaim space and stop paying for things you no longer need."],
   ["mattress-removal-east-valley-az", "Mattress Removal", "Mattress removal in the East Valley, AZ", "Mattress, box spring, bed frame, bedroom furniture, and single-item pickup service."],
   ["same-day-junk-removal-east-valley-az", "Same Day Junk Removal", "Same day junk removal in the East Valley, AZ", "Fast response junk hauling when scheduling allows for urgent pickups, cleanouts, and clutter removal."]
 ];
@@ -25,13 +30,39 @@ const services = [
 const cities = [
   ["mesa-junk-removal", "Mesa", "Mesa junk removal"],
   ["gilbert-junk-removal", "Gilbert", "Gilbert junk removal"],
-  ["chandler-junk-removal", "Chandler", "Chandler junk removal"],
   ["queen-creek-junk-removal", "Queen Creek", "Queen Creek junk removal"],
+  ["chandler-junk-removal", "Chandler", "Chandler junk removal"],
+  ["san-tan-valley-junk-removal", "San Tan Valley", "San Tan Valley junk removal"],
+  ["apache-junction-junk-removal", "Apache Junction", "Apache Junction junk removal"],
   ["tempe-junk-removal", "Tempe", "Tempe junk removal"],
   ["scottsdale-junk-removal", "Scottsdale", "Scottsdale junk removal"],
-  ["apache-junction-junk-removal", "Apache Junction", "Apache Junction junk removal"],
-  ["san-tan-valley-junk-removal", "San Tan Valley", "San Tan Valley junk removal"],
   ["phoenix-junk-removal", "Phoenix", "Phoenix junk removal"]
+];
+
+const navServices = [
+  ["junk-removal-east-valley-az", "Junk Removal"],
+  ["garage-cleanout-east-valley-az", "Garage Cleanouts"],
+  ["furniture-removal-east-valley-az", "Furniture Removal"],
+  ["appliance-removal-east-valley-az", "Appliance Removal"],
+  ["property-cleanout-east-valley-az", "Property Cleanouts"],
+  ["yard-waste-removal-east-valley-az", "Yard Waste Removal"],
+  ["construction-debris-removal-east-valley-az", "Construction Debris Removal"],
+  ["hot-tub-removal-east-valley-az", "Hot Tub Removal"],
+  ["commercial-cleanouts-east-valley-az", "Commercial Cleanouts"],
+  ["estate-cleanout-east-valley-az", "Estate Cleanouts"],
+  ["moving-labor-assistance-east-valley-az", "Moving Labor Assistance"],
+  ["trash-hauling-east-valley-az", "Trash Hauling"]
+];
+
+const navCities = [
+  ["mesa-junk-removal", "Mesa AZ"],
+  ["gilbert-junk-removal", "Gilbert AZ"],
+  ["queen-creek-junk-removal", "Queen Creek AZ"],
+  ["chandler-junk-removal", "Chandler AZ"],
+  ["san-tan-valley-junk-removal", "San Tan Valley AZ"],
+  ["apache-junction-junk-removal", "Apache Junction AZ"],
+  ["tempe-junk-removal", "Tempe AZ"],
+  ["scottsdale-junk-removal", "Scottsdale AZ"]
 ];
 
 const homeServices = [
@@ -108,10 +139,28 @@ function header() {
       <a class="brand brand-with-logo" href="/" aria-label="Southwest Hauling and Junk Removal home">
         <img src="/assets/southwest-logo.png" alt="Southwest Hauling & Junk Removal logo">
       </a>
-      <nav class="top-actions" aria-label="Primary">
-        <a href="/services/">Services</a>
-        <a href="/about/">About</a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
+        <span>Menu</span>
+        <i aria-hidden="true"></i>
+      </button>
+      <nav class="top-actions" id="primary-nav" aria-label="Primary">
+        <a href="/">Home</a>
+        <details class="nav-dropdown">
+          <summary>Services</summary>
+          <div class="dropdown-panel">
+            ${navServices.map(([slug, label]) => `<a href="/services/${slug}/">${esc(label)}</a>`).join("")}
+          </div>
+        </details>
+        <details class="nav-dropdown">
+          <summary>Service Areas</summary>
+          <div class="dropdown-panel location-panel">
+            ${navCities.map(([slug, label]) => `<a href="/locations/${slug}/">${esc(label)}</a>`).join("")}
+          </div>
+        </details>
+        <a href="/about/">About Us</a>
+        <a href="/#reviews">Reviews</a>
         <a href="/contact/">Contact</a>
+        <a class="phone-cta" href="${PHONE_HREF}">${PHONE_DISPLAY}</a>
         <a class="nav-cta" href="${QUOTE}">Get Free Quote</a>
       </nav>
     </header>`;

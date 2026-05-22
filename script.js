@@ -2,6 +2,37 @@ const form = document.querySelector("#estimate-form");
 const note = document.querySelector("#form-note");
 const recipient = "chris@southwestjunkhauling.com";
 const quoteSubject = "Free Junk Removal Quote Request";
+const siteHeader = document.querySelector(".site-header");
+const menuToggle = document.querySelector(".menu-toggle");
+const navDropdowns = [...document.querySelectorAll(".nav-dropdown")];
+
+menuToggle?.addEventListener("click", () => {
+  const isOpen = siteHeader?.classList.toggle("nav-open") || false;
+  menuToggle.setAttribute("aria-expanded", String(isOpen));
+});
+
+navDropdowns.forEach((dropdown) => {
+  dropdown.addEventListener("toggle", () => {
+    if (!dropdown.open) return;
+    navDropdowns.forEach((otherDropdown) => {
+      if (otherDropdown !== dropdown) {
+        otherDropdown.removeAttribute("open");
+      }
+    });
+  });
+});
+
+document.addEventListener("click", (event) => {
+  if (event.target instanceof Node && siteHeader?.contains(event.target)) return;
+  navDropdowns.forEach((dropdown) => dropdown.removeAttribute("open"));
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  siteHeader?.classList.remove("nav-open");
+  menuToggle?.setAttribute("aria-expanded", "false");
+  navDropdowns.forEach((dropdown) => dropdown.removeAttribute("open"));
+});
 
 form?.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -44,6 +75,7 @@ const hero = document.querySelector(".hero");
 const heroContent = document.querySelector(".hero-content");
 const heroVideo = document.querySelector(".hero-video");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const coarsePointer = window.matchMedia("(pointer: coarse)");
 
 if (hero && heroContent && !reduceMotion.matches) {
   hero.addEventListener("pointermove", (event) => {
@@ -68,8 +100,49 @@ if (hero && heroContent && !reduceMotion.matches) {
 if (hero && heroVideo) {
   let heroVideoDuration = 0;
   let heroTicking = false;
+  let heroTargetTime = 0;
+  let heroRenderedTime = 0;
+  let heroScrubFrame = 0;
 
   const clampHeroProgress = (value) => Math.min(Math.max(value, 0), 1);
+
+  const seekHeroVideo = (time) => {
+    if (reduceMotion.matches || !heroVideoDuration || !heroVideo.seekable.length) return;
+
+    try {
+      heroVideo.currentTime = time;
+      heroRenderedTime = time;
+    } catch {
+      // The browser may need one more metadata pass before accepting seeks.
+    }
+  };
+
+  const scrubHeroVideo = () => {
+    heroScrubFrame = 0;
+
+    if (reduceMotion.matches || !heroVideoDuration || !heroVideo.seekable.length) return;
+
+    const delta = heroTargetTime - heroRenderedTime;
+
+    if (Math.abs(delta) < 0.012) {
+      seekHeroVideo(heroTargetTime);
+      return;
+    }
+
+    const maxStep = coarsePointer.matches ? 0.06 : 0.085;
+    const easing = coarsePointer.matches ? 0.08 : 0.1;
+    const easedStep = delta * easing;
+    const nextStep = Math.max(Math.min(easedStep, maxStep), -maxStep);
+
+    seekHeroVideo(heroRenderedTime + nextStep);
+    heroScrubFrame = window.requestAnimationFrame(scrubHeroVideo);
+  };
+
+  const requestHeroScrub = () => {
+    if (!heroScrubFrame) {
+      heroScrubFrame = window.requestAnimationFrame(scrubHeroVideo);
+    }
+  };
 
   const updateHeroScroll = () => {
     const rect = hero.getBoundingClientRect();
@@ -79,12 +152,10 @@ if (hero && heroVideo) {
 
     hero.style.setProperty("--hero-progress", progress.toFixed(3));
 
-    if (!reduceMotion.matches && duration && heroVideo.seekable.length) {
-      try {
-        heroVideo.currentTime = duration * progress;
-      } catch {
-        // The browser may need one more metadata pass before accepting seeks.
-      }
+    if (!reduceMotion.matches && duration) {
+      heroVideoDuration = duration;
+      heroTargetTime = duration * progress;
+      requestHeroScrub();
     }
 
     heroTicking = false;
@@ -99,6 +170,8 @@ if (hero && heroVideo) {
 
   heroVideo.addEventListener("loadedmetadata", () => {
     heroVideoDuration = heroVideo.duration || 0;
+    heroRenderedTime = heroVideo.currentTime || 0;
+    heroTargetTime = heroRenderedTime;
     heroVideo.pause();
     updateHeroScroll();
   });
