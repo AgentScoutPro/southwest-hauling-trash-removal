@@ -303,13 +303,23 @@ a {
   overflow: hidden;
 }
 
-.hero-video {
+.hero-video,
+.hero-image {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 50% 47%;
   transform: scale(calc(1.18 + (var(--hero-progress, 0) * 0.04)));
   transform-origin: center;
+}
+
+.hero-image {
+  background: var(--charcoal);
+}
+
+.hero-image-about {
+  object-position: 52% 44%;
 }
 
 .hero-spotlight {
@@ -1661,9 +1671,14 @@ details p {
     min-height: 185dvh;
   }
 
-  .hero-video {
+  .hero-video,
+  .hero-image {
     object-position: 50% 47%;
     transform: scale(calc(1.3 + (var(--hero-progress, 0) * 0.04)));
+  }
+
+  .hero-image-about {
+    object-position: 52% 44%;
   }
 
   .hero-media::after {
