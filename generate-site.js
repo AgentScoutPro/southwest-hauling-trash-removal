@@ -361,27 +361,33 @@ function serviceCopy(service) {
 
 function beforeAfter() {
   const items = [
-    ["patio", "Patio debris cleanup", "Branches, outdoor clutter, and loose debris cleared from a residential patio."],
-    ["side-yard", "Side yard cleanout", "Bulky items removed from a tight access area without leaving a mess behind."],
-    ["backyard-bags", "Backyard junk pickup", "Bagged waste, loose items, and neglected outdoor debris loaded and hauled off."],
-    ["fence-pile", "Fence-line cleanup", "Mixed household junk and scrap cleared from the yard edge."],
-    ["open-lot", "Open lot hauling", "Scattered debris removed to leave the space open and usable again."],
-    ["garage-cardboard", "Garage packing debris", "Cardboard, boxes, and bagged items removed after a move or delivery project."]
+    ["01", "Gilbert junk removal 01", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."],
+    ["02", "Gilbert junk removal 02", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."],
+    ["03", "Gilbert junk removal 03", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."],
+    ["04", "Gilbert junk removal 04", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."],
+    ["05", "Gilbert junk removal 05", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."],
+    ["06", "Gilbert junk removal 06", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."],
+    ["07", "Gilbert junk removal 07", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."],
+    ["08", "Gilbert junk removal 08", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."],
+    ["09", "Gilbert junk removal 09", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."],
+    ["10", "Gilbert junk removal 10", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."],
+    ["11", "Gilbert junk removal 11", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."],
+    ["12", "Gilbert junk removal 12", "Matched before and after cleanup photos from a Southwest Hauling junk removal job."]
   ];
   return `<section class="section before-after" id="before-after">
       <div class="section-heading">
         <h2>Before and after junk removal</h2>
-        <p>Real East Valley cleanups: yard debris, garage piles, side yards, fence-line junk, and full trailer loads hauled away.</p>
+        <p>Matched before and after junk removal photos from Southwest Hauling cleanup jobs in Gilbert and the East Valley.</p>
       </div>
       <div class="project-grid">
-        ${items.map(([slug, title, copy]) => `<article class="project-card">
+        ${items.map(([id, title, copy]) => `<article class="project-card">
           <div class="compare-toggle" aria-label="Choose ${esc(title)} image">
             <button class="is-active" type="button" data-view="before">Before</button>
             <button type="button" data-view="after">After</button>
           </div>
           <div class="compare-pair">
-            <figure class="before"><img src="/assets/before-after/${slug}-before.png" alt="${esc(title)} before junk removal"><figcaption>Before</figcaption></figure>
-            <figure class="after"><img src="/assets/before-after/${slug}-after.png" alt="${esc(title)} after junk removal"><figcaption>After</figcaption></figure>
+            <figure class="before"><img src="/assets/before-after/${id}-before.png" alt="${esc(title)} before junk removal" loading="lazy" width="400" height="400"><figcaption>Before</figcaption></figure>
+            <figure class="after"><img src="/assets/before-after/${id}-after.png" alt="${esc(title)} after junk removal" loading="lazy" width="400" height="400"><figcaption>After</figcaption></figure>
           </div>
           <h3>${esc(title)}</h3><p>${esc(copy)}</p>
         </article>`).join("")}
