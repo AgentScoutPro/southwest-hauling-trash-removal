@@ -602,7 +602,7 @@ function updateHome() {
           <div class="reviews-divider" aria-hidden="true"></div>
           <div class="reviews-rating-copy">
             <div class="reviews-stars" aria-label="5 star rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <span data-google-total>Current Google profile reviews</span>
+            <span data-google-total>68 Google reviews</span>
           </div>
         </div>
       </div>

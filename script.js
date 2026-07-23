@@ -293,6 +293,62 @@ const fallbackGoogleReviews = [
   },
 ];
 
+const parseCsvRows = (text) => {
+  const rows = [];
+  let row = [];
+  let field = "";
+  let quoted = false;
+
+  for (let index = 0; index < text.length; index += 1) {
+    const char = text[index];
+    const next = text[index + 1];
+
+    if (quoted) {
+      if (char === '"' && next === '"') {
+        field += '"';
+        index += 1;
+      } else if (char === '"') {
+        quoted = false;
+      } else {
+        field += char;
+      }
+      continue;
+    }
+
+    if (char === '"') {
+      quoted = true;
+    } else if (char === ",") {
+      row.push(field);
+      field = "";
+    } else if (char === "\n") {
+      row.push(field);
+      rows.push(row);
+      row = [];
+      field = "";
+    } else if (char !== "\r") {
+      field += char;
+    }
+  }
+
+  if (field || row.length) {
+    row.push(field);
+    rows.push(row);
+  }
+
+  return rows;
+};
+
+const reviewsFromCsv = (csvText) => parseCsvRows(csvText)
+  .slice(1)
+  .filter((row) => String(row[3] || "").trim())
+  .map((row) => ({
+    author: String(row[1] || "Google reviewer").trim(),
+    rating: 5,
+    text: String(row[3] || "").trim().replaceAll("…", "..."),
+    time: String(row[2] || "Google review").trim(),
+    profilePhoto: String(row[0] || "").trim(),
+  }));
+
 const getReviewInitials = (name) => {
   const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
   if (parts.length >= 2) return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
@@ -316,7 +372,8 @@ const renderGoogleReviewCard = (review) => {
         <span class="review-google-badge"><span class="google-g">G</span> Google</span>
       </div>
       <p>"${escapeHtml(text)}"</p>
-      <div class="review-author" data-initials="${getReviewInitials(author)}">
+      <div class="review-author${review.profilePhoto ? " review-author--photo" : ""}" data-initials="${getReviewInitials(author)}">
+        ${review.profilePhoto ? `<img src="${escapeHtml(review.profilePhoto)}" alt="${escapeHtml(author)}">` : ""}
         <div><span>${escapeHtml(author)}</span><small>${escapeHtml(time)}</small></div>
       </div>
     </article>
@@ -331,6 +388,21 @@ if (googleReviewsSection && googleReviewTrack) {
   };
 
   renderReviewTrack(fallbackGoogleReviews);
+  if (googleRating) googleRating.textContent = "5.0";
+  if (googleTotal) googleTotal.textContent = "68 Google reviews";
+
+  fetch("/assets/southwest-reviews.csv")
+    .then((response) => {
+      if (!response.ok) throw new Error("Review CSV unavailable");
+      return response.text();
+    })
+    .then((csvText) => {
+      const reviews = reviewsFromCsv(csvText);
+      if (reviews.length) renderReviewTrack(reviews);
+    })
+    .catch(() => {
+      /* Keep the compact fallback cards. */
+    });
 
   fetch("/api/google-reviews")
     .then((response) => {
@@ -354,7 +426,6 @@ if (googleReviewsSection && googleReviewTrack) {
       renderReviewTrack(reviews);
     })
     .catch(() => {
-      if (googleRating) googleRating.textContent = "Live";
-      if (googleTotal) googleTotal.textContent = "Open every live review on Google";
+      /* Static Google review export remains visible until the API is configured. */
     });
 }

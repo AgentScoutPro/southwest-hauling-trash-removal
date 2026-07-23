@@ -1188,6 +1188,7 @@ h3 {
   margin: 0;
   color: #475569;
   font-size: 15px;
+  font-weight: 500;
   line-height: 1.65;
 }
 
@@ -1211,6 +1212,19 @@ h3 {
   font-size: 12px;
   font-weight: 950;
   content: attr(data-initials);
+}
+
+.review-author--photo::before {
+  display: none;
+}
+
+.review-author img {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  border: 1px solid #f1f5f9;
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .review-author span,
