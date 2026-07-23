@@ -590,6 +590,37 @@ function updateHome() {
       </div>
     </section>
     <section class="section seo-content"`);
+  const reviewsSection = `<section class="section google-reviews" id="reviews" data-google-reviews>
+      <div class="reviews-header">
+        <p class="reviews-kicker">Real Customer Reviews</p>
+        <h2>What Arizona Customers<br><span>Are Saying.</span></h2>
+        <div class="reviews-rating-pill" aria-live="polite">
+          <div class="reviews-score">
+            <span class="google-g" aria-label="Google">G</span>
+            <strong data-google-rating>Live</strong>
+          </div>
+          <div class="reviews-divider" aria-hidden="true"></div>
+          <div class="reviews-rating-copy">
+            <div class="reviews-stars" aria-label="5 star rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <span data-google-total>Loading live Google reviews</span>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-marquee" role="region" aria-label="Southwest Hauling Google reviews">
+        <div class="reviews-track" data-google-review-track>
+          <article class="review-card review-card-status">
+            <div class="review-card-top"><div class="reviews-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><span class="review-google-badge"><span class="google-g">G</span> Google</span></div>
+            <p>Loading live review snippets from Google. Use the link below to view every current review directly on Southwest Hauling's Google profile.</p>
+            <div class="review-author" data-initials="G"><div><span>Live Google Reviews</span><small>Southwest Hauling &amp; Junk Removal LLC</small></div></div>
+          </article>
+        </div>
+      </div>
+      <div class="reviews-footer">
+        <a href="https://maps.app.goo.gl/HeMSgZbxu7cZTYhG9" target="_blank" rel="noopener noreferrer">Read every live review on Google &nearr;</a>
+      </div>
+    </section>`;
+  html = html.replace(/<section class="section (?:reviews|google-reviews)" id="reviews"[\s\S]*?<\/section>\s*<section class="section cta-section"/, `${reviewsSection}
+      <section class="section cta-section"`);
   fs.writeFileSync(file, html);
 }
 

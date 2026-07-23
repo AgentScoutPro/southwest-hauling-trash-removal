@@ -254,3 +254,69 @@ if (sequence && sequenceVideo && sequencePanels.length) {
   }
   updateSequence();
 }
+
+const googleReviewsSection = document.querySelector("[data-google-reviews]");
+const googleReviewTrack = document.querySelector("[data-google-review-track]");
+const googleRating = document.querySelector("[data-google-rating]");
+const googleTotal = document.querySelector("[data-google-total]");
+
+const getReviewInitials = (name) => {
+  const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
+  if (parts.length >= 2) return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+  return (parts[0]?.[0] || "G").toUpperCase();
+};
+
+const renderGoogleReviewCard = (review) => {
+  const text = String(review.text || "").trim();
+  const author = String(review.author || "Google reviewer").trim();
+  const time = String(review.time || "Google review").trim();
+  const escapeHtml = (value) => String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;");
+
+  return `
+    <article class="review-card">
+      <div class="review-card-top">
+        <div class="reviews-stars" aria-label="${Number(review.rating) || 5} star rating">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <span class="review-google-badge"><span class="google-g">G</span> Google</span>
+      </div>
+      <p>"${escapeHtml(text)}"</p>
+      <div class="review-author" data-initials="${getReviewInitials(author)}">
+        <div><span>${escapeHtml(author)}</span><small>${escapeHtml(time)}</small></div>
+      </div>
+    </article>
+  `;
+};
+
+if (googleReviewsSection && googleReviewTrack) {
+  fetch("/api/google-reviews")
+    .then((response) => {
+      if (!response.ok) throw new Error("Google reviews unavailable");
+      return response.json();
+    })
+    .then((data) => {
+      const reviews = Array.isArray(data.reviews)
+        ? data.reviews.filter((review) => String(review.text || "").trim())
+        : [];
+
+      if (googleRating && Number.isFinite(Number(data.rating))) {
+        googleRating.textContent = Number(data.rating).toFixed(1);
+      }
+
+      if (googleTotal && Number(data.totalReviews) > 0) {
+        googleTotal.textContent = `${Number(data.totalReviews).toLocaleString()} live Google reviews`;
+      }
+
+      if (!reviews.length) return;
+
+      const doubledReviews = [...reviews, ...reviews];
+      googleReviewTrack.style.setProperty("--reviews-duration", `${Math.max(35, reviews.length * 7)}s`);
+      googleReviewTrack.innerHTML = doubledReviews.map(renderGoogleReviewCard).join("");
+    })
+    .catch(() => {
+      if (googleRating) googleRating.textContent = "Google";
+      if (googleTotal) googleTotal.textContent = "View every live review on Google";
+    });
+}
