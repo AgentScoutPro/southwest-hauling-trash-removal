@@ -999,40 +999,40 @@ h3 {
   max-width: none;
   scroll-margin-top: 132px;
   padding-inline: 0;
-  padding-top: clamp(112px, 14vw, 148px);
-  padding-bottom: clamp(124px, 14vw, 168px);
-  background: #fff8eb;
+  padding-top: clamp(84px, 9vw, 122px);
+  padding-bottom: clamp(92px, 10vw, 138px);
+  background: #fff;
   color: var(--charcoal);
 }
 
 .reviews-header {
   max-width: 1180px;
-  margin: 0 auto 56px;
+  margin: 0 auto 54px;
   padding: 0 clamp(20px, 4vw, 56px);
   text-align: center;
 }
 
 .reviews-kicker {
-  margin: 0 0 14px;
-  color: var(--orange);
-  font-size: 13px;
+  margin: 0 0 12px;
+  color: #0ea5e9;
+  font-size: 12px;
   font-weight: 950;
-  letter-spacing: 0;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
 .reviews-header h2 {
   margin: 0 0 32px;
-  color: var(--charcoal);
+  color: #111827;
   font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
-  font-size: clamp(42px, 6vw, 76px);
+  font-size: clamp(36px, 4.4vw, 62px);
   font-weight: 950;
-  line-height: 0.96;
+  line-height: 0.98;
   letter-spacing: 0;
 }
 
 .reviews-header h2 span {
-  color: var(--orange);
+  color: #0ea5e9;
 }
 
 .reviews-rating-pill {
@@ -1040,11 +1040,11 @@ h3 {
   align-items: center;
   gap: 24px;
   max-width: calc(100vw - 36px);
-  padding: 20px 28px;
-  border: 1px solid rgba(23, 21, 18, 0.12);
+  padding: 18px 28px;
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.74);
-  box-shadow: 0 16px 38px rgba(17, 17, 17, 0.08);
+  background: #f8fafc;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.04);
 }
 
 .reviews-score,
@@ -1063,7 +1063,7 @@ h3 {
 .reviews-score strong {
   color: var(--charcoal);
   font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
-  font-size: 38px;
+  font-size: 36px;
   line-height: 1;
 }
 
@@ -1088,20 +1088,20 @@ h3 {
 .reviews-divider {
   width: 1px;
   height: 48px;
-  background: rgba(23, 21, 18, 0.12);
+  background: #e2e8f0;
 }
 
 .reviews-rating-copy {
   flex-direction: column;
   align-items: flex-start;
   gap: 7px;
-  color: var(--muted);
-  font-size: 15px;
+  color: #64748b;
+  font-size: 14px;
   font-weight: 700;
 }
 
 .reviews-stars {
-  color: var(--gold);
+  color: #f59e0b;
   letter-spacing: 1px;
   line-height: 1;
 }
@@ -1124,19 +1124,19 @@ h3 {
 
 .reviews-marquee::before {
   left: 0;
-  background: linear-gradient(to right, #fff8eb, rgba(255, 248, 235, 0));
+  background: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
 }
 
 .reviews-marquee::after {
   right: 0;
-  background: linear-gradient(to left, #fff8eb, rgba(255, 248, 235, 0));
+  background: linear-gradient(to left, #fff, rgba(255, 255, 255, 0));
 }
 
 .reviews-track {
   display: flex;
   width: max-content;
   min-width: 100%;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 16px;
   padding: 4px 16px 12px;
   animation: reviews-scroll var(--reviews-duration, 42s) linear infinite;
@@ -1155,16 +1155,16 @@ h3 {
   width: min(340px, calc(100vw - 48px));
   min-height: 296px;
   padding: 24px;
-  border: 1px solid rgba(23, 21, 18, 0.12);
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
   background: #fff;
-  box-shadow: 0 16px 38px rgba(17, 17, 17, 0.08);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
   transition: box-shadow var(--motion), transform var(--motion);
 }
 
 .review-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 22px 48px rgba(223, 89, 43, 0.16);
+  box-shadow: 0 8px 32px rgba(14, 165, 233, 0.1);
 }
 
 .review-card-top {
@@ -1175,10 +1175,10 @@ h3 {
 .review-google-badge {
   gap: 6px;
   padding: 5px 10px;
-  border: 1px solid rgba(23, 21, 18, 0.08);
+  border: 1px solid #f1f5f9;
   border-radius: 999px;
-  background: rgba(248, 240, 223, 0.64);
-  color: var(--muted);
+  background: #f8fafc;
+  color: #94a3b8;
   font-size: 11px;
   font-weight: 850;
 }
@@ -1186,7 +1186,7 @@ h3 {
 .review-card p {
   flex: 1;
   margin: 0;
-  color: #51483d;
+  color: #475569;
   font-size: 15px;
   line-height: 1.65;
 }
@@ -1195,7 +1195,7 @@ h3 {
   justify-content: flex-start;
   gap: 12px;
   padding-top: 14px;
-  border-top: 1px solid rgba(23, 21, 18, 0.08);
+  border-top: 1px solid #f1f5f9;
 }
 
 .review-author::before {
@@ -1204,10 +1204,10 @@ h3 {
   height: 36px;
   flex: 0 0 auto;
   place-items: center;
-  border: 1px solid rgba(223, 89, 43, 0.24);
+  border: 1px solid #bae6fd;
   border-radius: 50%;
-  background: rgba(223, 89, 43, 0.08);
-  color: var(--orange-dark);
+  background: #f0f9ff;
+  color: #0ea5e9;
   font-size: 12px;
   font-weight: 950;
   content: attr(data-initials);
@@ -1229,28 +1229,28 @@ h3 {
 }
 
 .review-author small {
-  color: var(--muted);
+  color: #94a3b8;
   font-size: 12px;
   font-weight: 700;
 }
 
 .reviews-footer {
-  margin-top: 48px;
+  margin-top: 42px;
   padding: 0 24px;
   text-align: center;
 }
 
 .reviews-footer a {
   display: inline-flex;
-  color: var(--charcoal);
-  font-size: 15px;
-  font-weight: 900;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 800;
   text-decoration: none;
   transition: color var(--motion), transform var(--motion);
 }
 
 .reviews-footer a:hover {
-  color: var(--orange);
+  color: #0ea5e9;
   transform: translateY(-1px);
 }
 
@@ -1261,6 +1261,64 @@ h3 {
 
   to {
     transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 640px) {
+  .google-reviews {
+    padding-top: 104px;
+  }
+
+  .reviews-header {
+    margin-bottom: 42px;
+  }
+
+  .reviews-header h2 {
+    font-size: clamp(34px, 11vw, 44px);
+    line-height: 0.98;
+  }
+
+  .reviews-rating-pill {
+    width: calc(100vw - 40px);
+    justify-content: center;
+    gap: 16px;
+    padding: 18px;
+  }
+
+  .reviews-score strong {
+    font-size: 34px;
+  }
+
+  .reviews-rating-copy {
+    max-width: 138px;
+    font-size: 13px;
+  }
+
+  .reviews-marquee {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .reviews-marquee::before,
+  .reviews-marquee::after {
+    display: none;
+  }
+
+  .reviews-track {
+    min-width: max-content;
+    padding-inline: 20px;
+    animation: none;
+  }
+
+  .review-card {
+    width: calc(100vw - 40px);
+    min-height: 260px;
+    scroll-snap-align: center;
+  }
+
+  .reviews-footer {
+    padding-bottom: 86px;
   }
 }
 

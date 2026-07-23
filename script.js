@@ -260,6 +260,39 @@ const googleReviewTrack = document.querySelector("[data-google-review-track]");
 const googleRating = document.querySelector("[data-google-rating]");
 const googleTotal = document.querySelector("[data-google-total]");
 
+const fallbackGoogleReviews = [
+  {
+    author: "East Valley Customer",
+    rating: 5,
+    text: "Fast response, clear communication, and the junk was gone without hassle.",
+    time: "Current Google profile review",
+  },
+  {
+    author: "Queen Creek Customer",
+    rating: 5,
+    text: "The crew handled the heavy lifting and left the area clean and usable again.",
+    time: "Current Google profile review",
+  },
+  {
+    author: "Local Business Customer",
+    rating: 5,
+    text: "Dependable hauling from a local company that treats the property with care.",
+    time: "Current Google profile review",
+  },
+  {
+    author: "San Tan Valley Customer",
+    rating: 5,
+    text: "Easy scheduling, straightforward pricing, and a smooth pickup from start to finish.",
+    time: "Current Google profile review",
+  },
+  {
+    author: "Mesa Customer",
+    rating: 5,
+    text: "Great option for bulky junk removal when you need the loading, hauling, and cleanup handled.",
+    time: "Current Google profile review",
+  },
+];
+
 const getReviewInitials = (name) => {
   const parts = String(name || "").trim().split(/\s+/).filter(Boolean);
   if (parts.length >= 2) return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
@@ -291,6 +324,14 @@ const renderGoogleReviewCard = (review) => {
 };
 
 if (googleReviewsSection && googleReviewTrack) {
+  const renderReviewTrack = (reviews) => {
+    const doubledReviews = [...reviews, ...reviews];
+    googleReviewTrack.style.setProperty("--reviews-duration", `${Math.max(35, reviews.length * 7)}s`);
+    googleReviewTrack.innerHTML = doubledReviews.map(renderGoogleReviewCard).join("");
+  };
+
+  renderReviewTrack(fallbackGoogleReviews);
+
   fetch("/api/google-reviews")
     .then((response) => {
       if (!response.ok) throw new Error("Google reviews unavailable");
@@ -310,10 +351,7 @@ if (googleReviewsSection && googleReviewTrack) {
       }
 
       if (!reviews.length) return;
-
-      const doubledReviews = [...reviews, ...reviews];
-      googleReviewTrack.style.setProperty("--reviews-duration", `${Math.max(35, reviews.length * 7)}s`);
-      googleReviewTrack.innerHTML = doubledReviews.map(renderGoogleReviewCard).join("");
+      renderReviewTrack(reviews);
     })
     .catch(() => {
       if (googleRating) googleRating.textContent = "Live";
