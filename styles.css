@@ -997,7 +997,10 @@ h3 {
 .google-reviews {
   overflow: hidden;
   max-width: none;
+  scroll-margin-top: 132px;
   padding-inline: 0;
+  padding-top: clamp(112px, 14vw, 148px);
+  padding-bottom: clamp(124px, 14vw, 168px);
   background: #fff8eb;
   color: var(--charcoal);
 }
@@ -1132,6 +1135,8 @@ h3 {
 .reviews-track {
   display: flex;
   width: max-content;
+  min-width: 100%;
+  justify-content: center;
   gap: 16px;
   padding: 4px 16px 12px;
   animation: reviews-scroll var(--reviews-duration, 42s) linear infinite;

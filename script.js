@@ -316,7 +316,7 @@ if (googleReviewsSection && googleReviewTrack) {
       googleReviewTrack.innerHTML = doubledReviews.map(renderGoogleReviewCard).join("");
     })
     .catch(() => {
-      if (googleRating) googleRating.textContent = "Google";
-      if (googleTotal) googleTotal.textContent = "View every live review on Google";
+      if (googleRating) googleRating.textContent = "Live";
+      if (googleTotal) googleTotal.textContent = "Open every live review on Google";
     });
 }
