@@ -146,6 +146,149 @@ const locations = [
   { slug: "scottsdale-az", city: "Scottsdale", angle: "home cleanouts, furniture pickup, yard waste, and business hauling", nearby: ["tempe-az", "mesa-az", "chandler-az"] }
 ];
 
+const queenCreekAreas = [
+  {
+    slug: "ironwood-crossing-junk-removal",
+    name: "Ironwood Crossing",
+    category: "Master-Planned Neighborhood",
+    angle: "dense family neighborhoods, garage cleanouts, furniture removal, and move-in or move-out junk piles",
+    localDetail: "Ironwood Crossing is one of Queen Creek's most active residential pockets, with steady demand from families clearing garages, patios, storage areas, and bulky household items."
+  },
+  {
+    slug: "harvest-at-queen-creek-junk-removal",
+    name: "Harvest at Queen Creek",
+    category: "Master-Planned Neighborhood",
+    angle: "newer homes, family cleanups, community move-ins, yard debris, and bulky item pickup",
+    localDetail: "Harvest at Queen Creek has a high level of community activity, new homeowners, and family-focused living, making it a strong fit for quick residential hauling and cleanout support."
+  },
+  {
+    slug: "barney-farms-junk-removal",
+    name: "Barney Farms",
+    category: "Growth Neighborhood",
+    angle: "new-home clutter, packing debris, garage cleanup, appliance pickup, and backyard junk removal",
+    localDetail: "Barney Farms is known for rapid growth, newer families, and its lake-centered community setting near the Signal Butte side of Queen Creek."
+  },
+  {
+    slug: "hastings-farms-junk-removal",
+    name: "Hastings Farms",
+    category: "Family Neighborhood",
+    angle: "garage cleanouts, furniture removal, property cleanups, and home refresh projects",
+    localDetail: "Hastings Farms combines newer master-plan living with family amenities, trails, mountain views, and a steady flow of home-service searches."
+  },
+  {
+    slug: "cortina-junk-removal",
+    name: "Cortina",
+    category: "Family Neighborhood",
+    angle: "family-home cleanouts, bulky furniture removal, garage organization projects, and yard cleanup",
+    localDetail: "Cortina is a strong Queen Creek family neighborhood with clean streets, established homes, and ongoing demand for practical home services."
+  },
+  {
+    slug: "meridian-junk-removal",
+    name: "Meridian",
+    category: "East Queen Creek Growth Area",
+    angle: "new construction debris, moving boxes, furniture pickup, appliance removal, and garage cleanouts",
+    localDetail: "Meridian sits in one of Queen Creek's fast-growing eastern corridors, where new homes and new residents create frequent hauling and cleanup needs."
+  },
+  {
+    slug: "madera-junk-removal",
+    name: "Madera",
+    category: "East Queen Creek Growth Area",
+    angle: "new-home junk, move-in debris, garage cleanup, cardboard hauling, and bulky-item removal",
+    localDetail: "Madera is part of the expanding east Queen Creek growth zone, with newer homes and high search activity around moving, cleanup, and home services."
+  },
+  {
+    slug: "queen-creek-town-center-junk-removal",
+    name: "Queen Creek Town Center / Heritage District",
+    category: "Commercial and Civic Hub",
+    angle: "commercial cleanouts, retail debris, office furniture, restaurant-area hauling, and nearby residential junk removal",
+    localDetail: "Queen Creek Town Center and the Heritage District are the local commerce and civic core, making this page valuable for broader near-me searches around downtown Queen Creek."
+  },
+  {
+    slug: "gateway-quarter-junk-removal",
+    name: "Gateway Quarter",
+    category: "Commercial Corridor",
+    angle: "retail cleanup, commercial junk removal, office cleanouts, packing debris, and nearby residential hauling",
+    localDetail: "Gateway Quarter and the Power, Ellsworth, and Ocotillo corridors have strong commercial density, retail traffic, and mobile near-me search behavior."
+  },
+  {
+    slug: "the-pecans-junk-removal",
+    name: "The Pecans",
+    category: "Luxury and Estate Neighborhood",
+    angle: "estate cleanouts, large-lot cleanup, furniture removal, garage cleanouts, and white-glove hauling",
+    localDetail: "The Pecans is one of Queen Creek's signature luxury enclaves, with custom homes, larger lots, and tree-lined estate living that often calls for careful hauling support."
+  },
+  {
+    slug: "whitewing-bridle-ranch-junk-removal",
+    name: "Whitewing / Bridle Ranch",
+    category: "Luxury and Gated Neighborhood",
+    angle: "premium home cleanouts, estate hauling, furniture removal, garage cleanup, and discreet junk removal",
+    localDetail: "Whitewing and Bridle Ranch are higher-end Queen Creek communities where residents often look for professional, careful, and reliable home services."
+  },
+  {
+    slug: "encanterra-ovation-at-meridian-junk-removal",
+    name: "Encanterra / Ovation at Meridian",
+    category: "Resort-Style and Active Adult Community",
+    angle: "downsizing cleanouts, furniture removal, garage cleanup, appliance pickup, and move-related hauling",
+    localDetail: "Encanterra and Ovation at Meridian have resort-style living, active adult residents, golf, social amenities, and tight-knit local search behavior."
+  },
+  {
+    slug: "queen-creek-ranchettes-junk-removal",
+    name: "Queen Creek Ranchettes",
+    category: "Acreage and Custom Home Area",
+    angle: "acreage cleanup, large-lot junk removal, yard debris, shed cleanouts, and property cleanouts",
+    localDetail: "Queen Creek Ranchettes and nearby custom-home areas are ideal for larger hauling jobs, outdoor cleanup, estate work, and mixed-property debris."
+  },
+  {
+    slug: "montelena-junk-removal",
+    name: "Montelena",
+    category: "Residential Neighborhood",
+    angle: "garage cleanouts, furniture pickup, appliance removal, yard waste hauling, and household junk removal",
+    localDetail: "Montelena is a residential Queen Creek community where homeowners often need straightforward help clearing garages, patios, side yards, and bulky items."
+  },
+  {
+    slug: "the-villages-at-queen-creek-junk-removal",
+    name: "The Villages at Queen Creek",
+    category: "Golf-Course Community",
+    angle: "furniture removal, garage cleanouts, move-out junk, appliance pickup, and residential cleanups",
+    localDetail: "The Villages at Queen Creek is an established golf-course community with strong local service intent and steady household cleanup needs."
+  },
+  {
+    slug: "sossaman-estates-junk-removal",
+    name: "Sossaman Estates",
+    category: "Residential Neighborhood",
+    angle: "household junk removal, garage cleanouts, furniture pickup, yard debris, and move-related hauling",
+    localDetail: "Sossaman Estates has an established residential footprint and is a natural fit for neighborhood-specific junk removal and home-service searches."
+  },
+  {
+    slug: "san-tan-heights-junk-removal",
+    name: "San Tan Heights",
+    category: "Large Residential Community",
+    angle: "garage cleanouts, yard debris removal, furniture hauling, move-out junk, and bulky item pickup",
+    localDetail: "San Tan Heights brings large residential search volume from families and homeowners near the Queen Creek and San Tan Valley edge."
+  },
+  {
+    slug: "terravella-junk-removal",
+    name: "Terravella",
+    category: "Newer Residential Neighborhood",
+    angle: "new-home packing debris, garage cleanup, furniture removal, cardboard hauling, and household junk removal",
+    localDetail: "Terravella is a newer Queen Creek neighborhood where move-ins, upgrades, and home projects create repeat demand for hauling support."
+  },
+  {
+    slug: "church-farm-gateway-quarter-junk-removal",
+    name: "Church Farm / Gateway Quarter",
+    category: "Growth and Commercial Corridor",
+    angle: "commercial cleanouts, new-home debris, furniture pickup, garage cleanup, and business junk removal",
+    localDetail: "Church Farm and Gateway Quarter connect residential growth with active retail and commercial corridors, making this a useful local SEO target."
+  },
+  {
+    slug: "downtown-queen-creek-junk-removal",
+    name: "Downtown Queen Creek",
+    category: "Commercial and Civic Hub",
+    angle: "near-me junk removal, business cleanouts, household hauling, office furniture removal, and downtown-area trash hauling",
+    localDetail: "Downtown Queen Creek is a high-intent local search area tied to civic activity, dining, shopping, and nearby residential neighborhoods."
+  }
+];
+
 const popularServiceSlugs = [
   "junk-removal-east-valley-az",
   "garage-cleanout-east-valley-az",
@@ -212,6 +355,34 @@ function serviceSchema(service, route) {
     serviceType: service.name,
     url: canonical(route),
     description: service.meta
+  };
+}
+
+function queenCreekAreaSchema(area, route) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `Junk Removal in ${area.name}, Queen Creek AZ`,
+    provider: { "@type": "LocalBusiness", name: BUSINESS, telephone: "+1-480-490-8033" },
+    areaServed: [`${area.name} Queen Creek AZ`, "Queen Creek AZ"],
+    serviceType: "Junk Removal",
+    url: canonical(route),
+    description: `${BRAND} provides junk removal, cleanouts, furniture removal, appliance removal, and hauling in ${area.name}, Queen Creek AZ.`
+  };
+}
+
+function faqSchema(items) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map(({ question, answer }) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: answer
+      }
+    }))
   };
 }
 
@@ -345,6 +516,12 @@ function locationLinks(currentSlug = "") {
       </div>`;
 }
 
+function queenCreekAreaLinks(currentSlug = "") {
+  return `<div class="area-links area-links-wide" aria-label="Queen Creek neighborhood junk removal links">
+        ${queenCreekAreas.filter((area) => area.slug !== currentSlug).map((area) => `<a href="/locations/queen-creek-az/${area.slug}/">${esc(area.name)} junk removal</a>`).join("")}
+      </div>`;
+}
+
 function finalCta(copy = "Send photos and details for a free East Valley junk removal quote.") {
   return `<section class="section cta-section" id="contact">
       <h2>Ready to clear the junk?</h2>
@@ -354,6 +531,90 @@ function finalCta(copy = "Send photos and details for a free East Valley junk re
         <a class="button dark" href="${PHONE_HREF}">Call ${PHONE}</a>
       </div>
     </section>`;
+}
+
+function queenCreekAreaPage(area) {
+  const route = `locations/queen-creek-az/${area.slug}`;
+  const title = `${area.name} Junk Removal Queen Creek AZ | Southwest Hauling`;
+  const description = `Junk removal in ${area.name}, Queen Creek AZ for garage cleanouts, furniture removal, appliances, yard debris, property cleanouts, and hauling.`;
+  const faqs = [
+    {
+      question: `Do you provide junk removal in ${area.name}, Queen Creek AZ?`,
+      answer: `Yes. ${BRAND} provides junk removal, cleanouts, furniture removal, appliance pickup, yard debris hauling, and trash hauling in ${area.name} and nearby Queen Creek neighborhoods.`
+    },
+    {
+      question: `What can you haul away from homes in ${area.name}?`,
+      answer: "We haul non-hazardous junk including furniture, boxes, garage clutter, appliances, yard debris, bagged trash, move-out piles, and many bulky household items."
+    },
+    {
+      question: "How do I get a quote?",
+      answer: `Call ${PHONE} or email photos and pickup details to ${EMAIL}. Photos help us quote the job and plan the right pickup window.`
+    }
+  ];
+  const focusServices = services.filter((service) => [
+    "junk-removal-east-valley-az",
+    "garage-cleanout-east-valley-az",
+    "furniture-removal-east-valley-az",
+    "appliance-removal-east-valley-az",
+    "property-cleanouts-east-valley-az",
+    area.category.includes("Commercial") ? "commercial-cleanout-east-valley-az" : "yard-waste-removal-east-valley-az",
+    area.category.includes("Luxury") || area.category.includes("Acreage") ? "estate-cleanout-east-valley-az" : "trash-hauling-east-valley-az"
+  ].includes(service.slug)).slice(0, 7);
+  const body = `<section class="section split">
+      <div>
+        <h2>${esc(area.name)} junk removal and cleanouts</h2>
+        <p>${esc(area.localDetail)} Southwest Hauling helps ${esc(area.name)} customers with ${esc(area.angle)}.</p>
+        <ul class="check-list">
+          <li>Free quotes for ${esc(area.name)} junk removal</li>
+          <li>Garage, yard, household, estate, and property cleanout help</li>
+          <li>Bulky furniture, appliances, boxes, and non-hazardous trash hauled away</li>
+          <li>Local Queen Creek service from ${BRAND}</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <h3>Need hauling in ${esc(area.name)}?</h3>
+        <p>Send photos and pickup details, or call ${PHONE} for a free quote.</p>
+        <a class="button primary" href="${QUOTE}">Get Free Quote</a>
+        <a class="contact-link" href="${PHONE_HREF}">Call ${PHONE}</a>
+      </div>
+    </section>
+    <section class="section services">
+      <div class="section-heading"><h2>Helpful services for ${esc(area.name)}</h2><p>Common junk removal and hauling requests in this Queen Creek area.</p></div>
+      ${serviceCards(focusServices)}
+    </section>
+    <section class="section why-choose">
+      <div class="section-heading"><h2>Built for Queen Creek service calls</h2><p>We keep the process clear from first quote to final sweep-up.</p></div>
+      <div class="why-grid">
+        <article><span>Quote</span><h3>Photo-friendly pricing</h3><p>Send photos of the items, access, and neighborhood details so we can quote quickly.</p></article>
+        <article><span>Load</span><h3>Heavy lifting handled</h3><p>We handle lifting, loading, hauling, and cleanup for non-hazardous junk.</p></article>
+        <article><span>Local</span><h3>Queen Creek focused</h3><p>Routes are built around Queen Creek, San Tan Valley, Gilbert, Mesa, and nearby East Valley areas.</p></article>
+        <article><span>Clean</span><h3>Useful spaces again</h3><p>Clear garages, patios, side yards, rentals, businesses, and estate spaces without extra dump runs.</p></article>
+      </div>
+    </section>
+    <section class="section services">
+      <div class="section-heading"><h2>${esc(area.name)} junk removal FAQs</h2><p>Quick answers before you request a pickup.</p></div>
+      <div class="service-grid">
+        ${faqs.map((faq, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join("")}
+      </div>
+    </section>
+    <section class="section areas">
+      <div class="section-heading"><h2>More Queen Creek neighborhood pages</h2><p>Browse nearby Queen Creek junk removal pages.</p></div>
+      ${queenCreekAreaLinks(area.slug)}
+    </section>
+    <section class="section areas">
+      <div class="section-heading"><h2>Queen Creek service hub</h2><p>Return to the main Queen Creek junk removal page.</p></div>
+      <div class="area-links"><a href="/locations/queen-creek-az/">Queen Creek AZ junk removal hub</a><a href="/services/">All junk removal services</a><a href="/contact/">Contact Southwest Hauling</a></div>
+    </section>
+    ${finalCta(`Call ${PHONE} or request a free quote for junk removal in ${area.name}, Queen Creek AZ.`)}`;
+  return layout({
+    route,
+    title,
+    description,
+    h1: `${area.name} Junk Removal in Queen Creek AZ`,
+    intro: `Fast, local hauling for ${area.angle} in ${area.name}.`,
+    body,
+    schema: [queenCreekAreaSchema(area, route), faqSchema(faqs)]
+  });
 }
 
 function servicePage(service) {
@@ -419,6 +680,18 @@ function locationPage(location) {
   const route = `locations/${location.slug}`;
   const popular = services.filter((service) => popularServiceSlugs.includes(service.slug)).slice(0, 6);
   const nearby = location.nearby.map((slug) => locations.find((item) => item.slug === slug)).filter(Boolean);
+  const queenCreekHub = location.slug === "queen-creek-az" ? `<section class="section areas">
+      <div class="section-heading"><h2>Queen Creek neighborhood junk removal pages</h2><p>Southwest Hauling serves top Queen Creek neighborhoods, commercial corridors, luxury enclaves, acreage areas, and growth communities.</p></div>
+      ${queenCreekAreaLinks()}
+    </section>
+    <section class="section services">
+      <div class="section-heading"><h2>Queen Creek local SEO focus areas</h2><p>Helpful service positioning for the highest-intent Queen Creek submarkets.</p></div>
+      <div class="service-grid">
+        <article><span>01</span><h3>Dense family neighborhoods</h3><p>Ironwood Crossing, Harvest, Barney Farms, Hastings Farms, Cortina, Montelena, and Terravella are ideal for garage cleanouts, furniture removal, moving debris, and household junk pickup.</p></article>
+        <article><span>02</span><h3>Commercial and near-me corridors</h3><p>Queen Creek Town Center, the Heritage District, Downtown Queen Creek, Gateway Quarter, and Church Farm help connect the site to high-intent local and mobile searches.</p></article>
+        <article><span>03</span><h3>Luxury, acreage, and estate jobs</h3><p>The Pecans, Whitewing, Bridle Ranch, Queen Creek Ranchettes, Encanterra, and Ovation at Meridian support higher-value cleanouts, downsizing, large-lot cleanup, and careful hauling.</p></article>
+      </div>
+    </section>` : "";
   const title = `Junk Removal in ${location.city} AZ | Southwest Hauling`;
   const description = `Fast junk removal in ${location.city} AZ for homes, businesses, cleanouts, furniture, appliances, yard waste, and trash hauling.`;
   const body = `<section class="section split">
@@ -460,6 +733,7 @@ function locationPage(location) {
       <div class="section-heading"><h2>Related service links</h2><p>Explore common junk removal services for ${esc(location.city)} customers.</p></div>
       ${serviceCards(services.slice(0, 8))}
     </section>
+    ${queenCreekHub}
     ${finalCta(`Call ${PHONE} or request a free quote for junk removal in ${location.city} AZ.`)}`;
   return layout({
     route,
@@ -618,12 +892,30 @@ function updateHome() {
   fs.writeFileSync(file, html);
 }
 
+function sitemap() {
+  const routes = [
+    { route: "/", priority: "1.0" },
+    { route: "services", priority: "0.9" },
+    { route: "about", priority: "0.8" },
+    { route: "contact", priority: "0.8" },
+    ...services.map((service) => ({ route: `services/${service.slug}` })),
+    ...locations.map((location) => ({ route: `locations/${location.slug}` })),
+    ...queenCreekAreas.map((area) => ({ route: `locations/queen-creek-az/${area.slug}` }))
+  ];
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${routes.map(({ route, priority }) => `<url><loc>${canonical(route)}</loc>${priority ? `<priority>${priority}</priority>` : ""}</url>`).join("\n")}
+</urlset>
+`;
+}
+
 updateHome();
 write("services", servicesHub());
 write("about", aboutPage());
 write("contact", contactPage());
 services.forEach((service) => write(`services/${service.slug}`, servicePage(service)));
 locations.forEach((location) => write(`locations/${location.slug}`, locationPage(location)));
+queenCreekAreas.forEach((area) => write(`locations/queen-creek-az/${area.slug}`, queenCreekAreaPage(area)));
 
 [
   ["services/property-cleanout-east-valley-az", "services/property-cleanouts-east-valley-az", "Property Cleanouts East Valley AZ"],
@@ -643,5 +935,7 @@ locations.forEach((location) => write(`locations/${location.slug}`, locationPage
   ["locations/scottsdale-junk-removal", "locations/scottsdale-az", "Junk Removal in Scottsdale AZ"],
   ["locations/phoenix-junk-removal", "locations/mesa-az", "East Valley Junk Removal"]
 ].forEach(([fromRoute, toRoute, label]) => write(fromRoute, aliasPage(fromRoute, toRoute, label)));
+
+fs.writeFileSync(path.join(ROOT, "sitemap.xml"), sitemap());
 
 console.log("Built SEO service and location pages.");
