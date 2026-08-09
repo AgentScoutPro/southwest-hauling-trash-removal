@@ -484,6 +484,42 @@ h3 {
   text-wrap: balance;
 }
 
+.compact-hero {
+  display: grid;
+  min-height: clamp(660px, 82dvh, 880px);
+  align-items: center;
+  overflow: hidden;
+}
+
+.compact-hero .hero-media {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  min-height: 100%;
+}
+
+.compact-hero .hero-content {
+  position: relative;
+  top: auto;
+  width: min(1280px, calc(100% - 40px));
+  margin: 0 auto;
+  padding: clamp(126px, 16dvh, 172px) clamp(18px, 4vw, 52px) clamp(70px, 10dvh, 104px);
+}
+
+.compact-hero h1 {
+  max-width: min(1120px, calc(100vw - 52px));
+  font-size: clamp(48px, 6.6vw, 96px);
+}
+
+.compact-hero .local-intro {
+  max-width: 920px;
+  font-size: clamp(18px, 1.8vw, 26px);
+}
+
+.compact-hero > .hero-content > .hero-actions {
+  display: grid !important;
+}
+
 .scroll-sequence {
   position: relative;
   min-height: 330vh;
@@ -1775,7 +1811,7 @@ details p {
   }
 
   .compact-hero {
-    min-height: max(980px, 180dvh);
+    min-height: clamp(700px, 84dvh, 900px);
   }
 
   .hero-media {
@@ -1784,7 +1820,8 @@ details p {
   }
 
   .compact-hero .hero-media {
-    min-height: 100dvh;
+    height: 100%;
+    min-height: 100%;
   }
 
   .hero-content {
@@ -1804,6 +1841,13 @@ details p {
   .hero-actions:not(.three-actions),
   .cta-section .hero-actions {
     grid-template-columns: max-content max-content;
+  }
+
+  .compact-hero .hero-content {
+    top: auto;
+    margin-top: 0;
+    padding-top: clamp(138px, 17dvh, 178px);
+    padding-bottom: clamp(78px, 10dvh, 112px);
   }
 
   .trust-strip {
@@ -2020,7 +2064,8 @@ details p {
   }
 
   .compact-hero .hero-media {
-    min-height: 100dvh;
+    height: 100%;
+    min-height: 100%;
   }
 
   .hero-content {
@@ -2033,6 +2078,27 @@ details p {
 
   .hero {
     min-height: 185dvh;
+  }
+
+  .compact-hero {
+    min-height: auto;
+  }
+
+  .compact-hero .hero-content {
+    top: auto;
+    width: calc(100% - 28px);
+    margin-top: 0;
+    padding: 124px 8px 62px;
+  }
+
+  .compact-hero h1 {
+    max-width: calc(100vw - 32px);
+    font-size: clamp(40px, 11vw, 56px);
+    line-height: 0.94;
+  }
+
+  .compact-hero > .hero-content > .hero-actions {
+    display: grid !important;
   }
 
   .hero-video,
