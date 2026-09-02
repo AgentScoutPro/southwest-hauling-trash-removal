@@ -21,7 +21,7 @@ const services = [
     meta: "Fast junk removal in the East Valley AZ for homes and businesses in Mesa, Gilbert, Queen Creek, Chandler, San Tan Valley, and nearby areas.",
     hero: "Get household junk, bulky clutter, garage piles, and unwanted items hauled away by a local East Valley crew.",
     details: "Southwest Hauling handles everyday junk removal for homeowners, renters, landlords, property managers, and small businesses. Send photos for a free quote, choose a pickup window, and we handle the lifting, loading, hauling, and cleanup.",
-    removes: ["Household clutter", "Boxes and bagged trash", "Bulky junk", "Garage items", "Rental cleanup debris", "Light outdoor junk"]
+    removes: ["Household clutter", "Boxes and bagged trash", "Bulky junk", "Garage items", "Rental cleanup debris", "Light outdoor junk", "Storm trash and damaged outdoor items"]
   },
   {
     slug: "garage-cleanout-east-valley-az",
@@ -60,8 +60,8 @@ const services = [
     title: "Property Cleanouts East Valley AZ | Southwest Hauling",
     meta: "Property cleanouts in the East Valley AZ for rentals, move-outs, foreclosures, estates, storage units, yards, and full cleanout jobs.",
     hero: "Get reliable property cleanout help for rentals, move-outs, storage units, and full junk removal jobs.",
-    details: "Southwest Hauling helps property owners, landlords, real estate agents, and families clear spaces quickly. We remove mixed junk, furniture, bagged waste, garage clutter, and non-hazardous debris.",
-    removes: ["Rental cleanout junk", "Move-out debris", "Storage unit contents", "Furniture and boxes", "Garage and yard clutter", "Estate cleanout items"]
+    details: "Southwest Hauling helps property owners, landlords, real estate agents, and families clear spaces quickly. We remove mixed junk, furniture, bagged waste, garage clutter, storm-damaged contents, outdoor belongings, and non-hazardous debris.",
+    removes: ["Rental cleanout junk", "Move-out debris", "Storage unit contents", "Furniture and boxes", "Garage and yard clutter", "Estate cleanout items", "Storm-damaged contents"]
   },
   {
     slug: "yard-waste-removal-east-valley-az",
@@ -70,8 +70,8 @@ const services = [
     title: "Yard Waste Removal East Valley AZ | Southwest Hauling",
     meta: "Yard waste removal in the East Valley AZ for branches, trimmings, storm debris, outdoor clutter, and cleanup piles.",
     hero: "Clear outdoor debris, branches, trimmings, and yard cleanup piles without multiple dump runs.",
-    details: "Arizona yards collect palm fronds, branches, broken outdoor items, and cleanup piles fast. We load and haul non-hazardous yard waste so patios, side yards, and lots are usable again.",
-    removes: ["Branches and trimmings", "Palm fronds", "Outdoor clutter", "Storm debris", "Bagged yard waste", "Side-yard cleanup piles"]
+    details: "Arizona yards collect palm fronds, branches, fallen limbs, wind-blown vegetation, landscape debris, broken outdoor items, and post-storm cleanup piles fast. We load and haul non-hazardous yard waste so patios, side yards, and lots are usable again.",
+    removes: ["Branches and trimmings", "Palm fronds", "Outdoor clutter", "Storm debris", "Large fallen limbs", "Tree debris", "Bagged yard waste", "Side-yard cleanup piles"]
   },
   {
     slug: "construction-debris-removal-east-valley-az",
@@ -80,8 +80,8 @@ const services = [
     title: "Construction Debris Removal East Valley AZ | Southwest Hauling",
     meta: "Light construction debris removal in the East Valley AZ for remodel scraps, wood, cardboard, packing debris, and non-hazardous jobsite cleanup.",
     hero: "Haul away light remodel debris and non-hazardous construction cleanup loads.",
-    details: "Southwest Hauling helps homeowners, contractors, and small businesses remove light debris after repairs, installs, deliveries, and remodel projects. We focus on clean, practical hauling for non-hazardous materials.",
-    removes: ["Wood scraps", "Cardboard", "Packing debris", "Light remodel waste", "Fixtures and trim", "Non-hazardous cleanup loads"]
+    details: "Southwest Hauling helps homeowners, contractors, and small businesses remove light debris after repairs, installs, deliveries, remodel projects, and storm repair cleanup. We haul damaged fencing debris, removed roofing material, shed debris, patio debris, and other non-hazardous building debris without claiming structural repair.",
+    removes: ["Wood scraps", "Cardboard", "Packing debris", "Light remodel waste", "Fixtures and trim", "Damaged fencing debris", "Storm repair debris", "Non-hazardous cleanup loads"]
   },
   {
     slug: "hot-tub-removal-east-valley-az",
@@ -130,10 +130,121 @@ const services = [
     title: "Trash Hauling East Valley AZ | Southwest Hauling",
     meta: "Trash hauling in the East Valley AZ for bagged waste, loose junk, cleanup piles, bulky trash, and non-hazardous debris.",
     hero: "Fast trash hauling for cleanup piles, bagged waste, and non-hazardous debris.",
-    details: "When regular trash service is not enough, Southwest Hauling can remove larger cleanup loads, loose junk, bagged waste, and bulky non-hazardous debris from homes, rentals, yards, and businesses.",
-    removes: ["Bagged trash", "Loose junk", "Bulky trash", "Cleanup piles", "Rental debris", "Non-hazardous waste"]
+    details: "When regular trash service is not enough, Southwest Hauling can remove larger cleanup loads, loose junk, bagged waste, post-monsoon debris, storm trash, and bulky non-hazardous debris from homes, rentals, yards, and businesses.",
+    removes: ["Bagged trash", "Loose junk", "Bulky trash", "Cleanup piles", "Rental debris", "Storm debris hauling", "Bulk damaged items", "Non-hazardous waste"]
   }
 ];
+
+
+const stormAssetBase = "/assets/storm";
+const stormAssets = {
+  homeBanner: "monsoon-fallen-tree-home-damage-east-valley-az-southwest-hauling-banner.png",
+  pillarBanner: "storm-damaged-tree-roof-east-valley-az-southwest-hauling-banner.png",
+  treeHero: "emergency-fallen-tree-removal-east-valley-az-southwest-hauling-hero.jpg",
+  stumpHero: "uprooted-tree-root-ball-removal-east-valley-az-southwest-hauling-hero.jpg",
+  damageBefore: "storm-damaged-tree-home-east-valley-az-southwest-hauling-before.jpg",
+  project: "monsoon-storm-tree-damage-east-valley-az-southwest-hauling-project.jpg",
+  limbDetail: "storm-tree-limb-damage-east-valley-az-southwest-hauling-detail.jpg",
+  branches: "fallen-tree-branches-home-east-valley-az-southwest-hauling-detail.jpg",
+  roofline: "storm-damage-roofline-east-valley-az-southwest-hauling-detail.heic",
+  impact: "storm-tree-impact-home-exterior-east-valley-az-southwest-hauling-damage-detail.heic",
+  neighborhood: "storm-cleanup-east-valley-az-southwest-hauling-neighborhood-context.heic",
+  crewOne: "fallen-tree-debris-cleanup-east-valley-az-southwest-hauling-crew-01.heic",
+  crewTwo: "storm-tree-debris-removal-east-valley-az-southwest-hauling-crew-02.heic",
+  afterOne: "storm-cleanup-property-east-valley-az-southwest-hauling-after-01.heic",
+  afterTwo: "monsoon-property-cleanup-east-valley-az-southwest-hauling-after.heic",
+  afterThree: "tree-debris-cleanup-east-valley-az-southwest-hauling-after-02.heic",
+  videos: [
+    "fallen-tree-storm-cleanup-east-valley-az-southwest-hauling-project-video.mov",
+    "2 fallen-tree-storm-cleanup-east-valley-az-southwest-hauling-project-video.mov",
+    "3 fallen-tree-storm-cleanup-east-valley-az-southwest-hauling-project-video.mov",
+    "4 fallen-tree-storm-cleanup-east-valley-az-southwest-hauling-project-video.mov"
+  ]
+};
+
+const stormServices = [
+  {
+    slug: "monsoon-storm-cleanup-east-valley-az",
+    name: "Monsoon & Storm Cleanup",
+    h1: "Monsoon & Storm Cleanup in Phoenix's East Valley",
+    title: "Monsoon & Storm Cleanup East Valley AZ | Southwest Hauling",
+    meta: "Monsoon and storm cleanup across Arizona's East Valley. Fallen trees, branches, yard debris, fencing, trash, loading and complete haul-away.",
+    hero: "Fallen trees. Broken limbs. Yard debris. Damaged fencing. Stumps. Trash. Southwest handles the cleanup, loading and haul-away across the East Valley.",
+    details: "When Arizona weather leaves trees, branches, fencing, damaged outdoor items, trash, and debris across a property, Southwest clears the mess. We focus on loading, hauling, and cleanup after monsoons, microbursts, severe winds, rainstorms, and dust storms.",
+    removes: ["Fallen tree cleanup", "Large limb removal", "Branch and yard debris", "Damaged fencing debris", "Outdoor furniture and bulk debris", "Driveway and access clearing"],
+    heroImage: stormAssets.pillarBanner,
+    media: [stormAssets.damageBefore, stormAssets.project, stormAssets.treeHero, stormAssets.stumpHero],
+    video: stormAssets.videos[1],
+    faqs: [
+      ["What storm debris do you remove?", "We remove fallen limbs, tree debris, palm debris, fencing debris, damaged outdoor items, bulk trash, yard waste, and other non-hazardous storm debris."],
+      ["Can you clean up after an Arizona monsoon?", "Yes. Southwest handles post-monsoon cleanup, loading, and haul-away across Queen Creek and the East Valley when scheduling allows."],
+      ["Do you remove trees and large branches?", "We remove fallen trees, large branches, tree debris, and related mess from storm-damaged properties."],
+      ["Do you haul everything away?", "Yes. The service is built around loading, cleanup, and complete haul-away for approved non-hazardous debris."]
+    ]
+  },
+  {
+    slug: "emergency-tree-removal-east-valley-az",
+    name: "Emergency & Fallen Tree Removal",
+    h1: "Emergency & Fallen Tree Removal Across the East Valley",
+    title: "Fallen Tree Removal East Valley AZ | Southwest Hauling",
+    meta: "Fallen and storm-damaged tree removal across the East Valley with debris loading, haul-away and complete property cleanup.",
+    hero: "We do not just remove the tree. We remove the mess around it: limbs, branches, root material, debris, loading, and haul-away.",
+    details: "A fallen tree can block a driveway, damage outdoor areas, or scatter heavy branches across the yard. Southwest removes storm-damaged trees and the surrounding debris without claiming arborist, utility-line, or structural repair services.",
+    removes: ["Fallen trees", "Storm-damaged trees", "Uprooted trees", "Broken limbs", "Tree debris", "Access-clearing debris"],
+    heroImage: stormAssets.treeHero,
+    media: [stormAssets.branches, stormAssets.limbDetail, stormAssets.pillarBanner, stormAssets.project],
+    video: stormAssets.videos[0],
+    faqs: [
+      ["Can you remove a tree that fell during a storm?", "Yes. We remove fallen and storm-damaged trees where the work fits Southwest's hauling and cleanup scope."],
+      ["Do you remove the entire tree?", "We can remove the tree debris, branches, large sections, and surrounding non-hazardous mess as part of the haul-away."],
+      ["Can you clear driveway access?", "Yes. If debris is blocking usable access, tell us when you request a quote so we can plan the cleanup."],
+      ["Are you an arborist?", "No arborist credentials are claimed here. Southwest provides cleanup, removal, loading, and haul-away." ]
+    ]
+  },
+  {
+    slug: "storm-debris-removal-east-valley-az",
+    name: "Storm Debris Removal & Hauling",
+    h1: "Storm Debris Removal & Hauling in the East Valley",
+    title: "Storm Debris Removal East Valley AZ | Southwest Hauling",
+    meta: "Storm debris removal and hauling across the East Valley for branches, yard waste, fencing, bulk debris and post-storm cleanup.",
+    hero: "Branches, palm debris, broken fencing, damaged outdoor items, loose trash, and cleanup piles loaded and hauled away.",
+    details: "Storm debris removal is for the mixed mess Arizona weather leaves behind. Southwest handles non-hazardous cleanup loads after wind, rain, dust storms, and monsoon damage.",
+    removes: ["Tree debris", "Limbs and branches", "Palm debris", "Fence debris", "Damaged outdoor items", "Post-storm trash"],
+    heroImage: stormAssets.project,
+    media: [stormAssets.project, stormAssets.damageBefore, stormAssets.branches, stormAssets.pillarBanner],
+    video: stormAssets.videos[2],
+    faqs: [["What storm debris can you haul?", "We haul branches, vegetation, fencing debris, outdoor items, bulk debris, yard waste, loose wind-blown material, and non-hazardous trash."], ["Do you handle fence debris?", "Yes. We can remove damaged fencing debris as haul-away, but we do not claim fence repair."], ["Can you load the debris for me?", "Yes. Loading and haul-away are part of the service."]]
+  },
+  {
+    slug: "stump-removal-east-valley-az",
+    name: "Stump Removal & Haul Away",
+    h1: "Tree Stump Removal & Haul Away in the East Valley",
+    title: "Stump Removal East Valley AZ | Southwest Hauling",
+    meta: "Tree stump and root-ball removal with complete haul-away throughout Arizona's East Valley.",
+    hero: "Stumps, exposed root balls, uprooted-tree debris, and heavy wood hauled away after storm damage or removal work.",
+    details: "Southwest can remove and haul away stumps, extracted stump material, and exposed root balls. We do not advertise stump grinding, replanting, grading, irrigation repair, or landscape restoration unless confirmed separately.",
+    removes: ["Tree stumps", "Root balls", "Uprooted tree debris", "Heavy wood debris", "Storm-damaged stump material", "Cleanup piles"],
+    heroImage: stormAssets.stumpHero,
+    media: [stormAssets.stumpHero, stormAssets.treeHero, stormAssets.damageBefore],
+    faqs: [["Do you remove stumps?", "Yes. Southwest can remove and haul away tree stumps and related debris where access and job scope fit."], ["Do you remove exposed root balls?", "Yes. Root-ball removal and haul-away are part of the storm cleanup offering."], ["Do you offer stump grinding?", "Stump grinding is not claimed on this site. This page covers stump removal, extraction debris, root-ball removal, and haul-away."]]
+  },
+  {
+    slug: "commercial-storm-cleanup-east-valley-az",
+    name: "Commercial & HOA Storm Cleanup",
+    h1: "Commercial & HOA Storm Cleanup in the East Valley",
+    title: "Commercial Storm Cleanup East Valley AZ | Southwest Hauling",
+    meta: "Storm debris cleanup and hauling for HOAs, property managers and commercial properties throughout Arizona's East Valley.",
+    hero: "Storm debris cleanup for HOAs, property managers, multifamily, retail, office, rental, and commercial properties.",
+    details: "Southwest helps commercial properties clear non-hazardous storm debris from common areas, parking areas, yards, and cleanup piles. We keep the offer focused on cleanup, loading, and hauling without inventing ongoing contracts or repair services.",
+    removes: ["Common area debris", "Parking lot debris", "Tree debris", "Fence debris", "Bulk storm debris", "Storm-damaged outdoor items"],
+    heroImage: stormAssets.pillarBanner,
+    media: [stormAssets.project, stormAssets.damageBefore, stormAssets.pillarBanner],
+    video: stormAssets.videos[3],
+    faqs: [["Do you work with HOAs?", "Yes. Southwest can provide quote-based storm cleanup and debris hauling for HOA common areas where the scope fits."], ["Do you work with property managers?", "Yes. Property managers can request storm debris cleanup for rentals, multifamily, and commercial properties."], ["Can you clean commercial common areas?", "Yes. We can remove non-hazardous storm debris from common areas, parking areas, and outdoor cleanup zones."]]
+  }
+];
+
+services.push(...stormServices);
 
 const locations = [
   { slug: "mesa-az", city: "Mesa", angle: "neighborhoods, rentals, garages, and business cleanouts", nearby: ["gilbert-az", "tempe-az", "apache-junction-az"] },
@@ -295,7 +406,10 @@ const popularServiceSlugs = [
   "furniture-removal-east-valley-az",
   "appliance-removal-east-valley-az",
   "property-cleanouts-east-valley-az",
-  "yard-waste-removal-east-valley-az"
+  "yard-waste-removal-east-valley-az",
+  "monsoon-storm-cleanup-east-valley-az",
+  "emergency-tree-removal-east-valley-az",
+  "storm-debris-removal-east-valley-az"
 ];
 
 function esc(value) {
@@ -461,7 +575,7 @@ function footer() {
     </footer>`;
 }
 
-function layout({ route, title, description, h1, intro, body, schema = [] }) {
+function layout({ route, title, description, h1, intro, body, schema = [], heroImage = "/assets/hero-junk-removal.png", heroVideo = "/assets/southwest-hauling-hero-video-01-scroll.mp4" }) {
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -480,9 +594,9 @@ function layout({ route, title, description, h1, intro, body, schema = [] }) {
     <main id="main-content">
       <section class="hero compact-hero">
         <div class="hero-media" aria-hidden="true">
-          <video class="hero-video" muted playsinline preload="auto" poster="/assets/hero-junk-removal.png">
-            <source src="/assets/southwest-hauling-hero-video-01-scroll.mp4" type="video/mp4">
-          </video>
+          ${heroVideo ? `<video class="hero-video" muted playsinline preload="auto" poster="${esc(heroImage)}">
+            <source src="${esc(heroVideo)}" type="video/mp4">
+          </video>` : `<img class="hero-image" src="${esc(heroImage)}" alt="" fetchpriority="high">`}
         </div>
         <div class="hero-spotlight" aria-hidden="true"></div>
         <div class="hero-content">
@@ -508,6 +622,40 @@ function serviceCards(items, currentSlug = "") {
   return `<div class="service-grid">
         ${items.filter((item) => item.slug !== currentSlug).map((service, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3><a href="/services/${service.slug}/">${esc(service.name)}</a></h3><p>${esc(service.hero)}</p></article>`).join("")}
       </div>`;
+}
+
+function stormAltText(filename) {
+  const labels = {
+    [stormAssets.homeBanner]: "Fallen tree and storm damage outside an East Valley home",
+    [stormAssets.pillarBanner]: "Storm-damaged tree on a roof before cleanup",
+    [stormAssets.treeHero]: "Large fallen tree prepared for removal after storm damage",
+    [stormAssets.stumpHero]: "Uprooted tree root ball ready for removal and haul-away",
+    [stormAssets.damageBefore]: "Storm-damaged tree and debris before Southwest cleanup",
+    [stormAssets.project]: "Monsoon tree damage at an East Valley property",
+    [stormAssets.limbDetail]: "Large storm-damaged tree limb near a home",
+    [stormAssets.branches]: "Fallen tree branches against a home after high winds",
+    [stormAssets.roofline]: "Storm debris and tree damage along a roofline",
+    [stormAssets.impact]: "Tree impact damage at a home exterior",
+    [stormAssets.neighborhood]: "Storm cleanup context in an East Valley neighborhood",
+    [stormAssets.crewOne]: "Southwest crew cleaning fallen tree debris",
+    [stormAssets.crewTwo]: "Southwest crew removing storm tree debris",
+    [stormAssets.afterOne]: "Property area after storm debris cleanup",
+    [stormAssets.afterTwo]: "Clean outdoor area after monsoon property cleanup",
+    [stormAssets.afterThree]: "Tree debris cleanup area after haul-away"
+  };
+  return labels[filename] || "Southwest storm cleanup project media";
+}
+
+function stormCaption(filename) {
+  if (filename.includes("after")) return "After Southwest cleanup and haul-away";
+  if (filename.includes("crew")) return "Removal, loading, and debris cleanup";
+  if (filename.includes("root-ball") || filename.includes("stump")) return "Root-ball and stump haul-away";
+  if (filename.includes("roof") || filename.includes("damage")) return "Storm damage and debris before cleanup";
+  return "Actual East Valley storm cleanup project";
+}
+
+function stormUrl(filename) {
+  return `${stormAssetBase}/${encodeURIComponent(filename).replace(/%2F/g, "/")}`;
 }
 
 function locationLinks(currentSlug = "") {
@@ -618,11 +766,38 @@ function queenCreekAreaPage(area) {
 }
 
 function servicePage(service) {
+  const isStorm = stormServices.some((item) => item.slug === service.slug);
   const related = services
     .filter((item) => item.slug !== service.slug)
-    .filter((item) => popularServiceSlugs.includes(item.slug) || ["commercial-cleanout-east-valley-az", "trash-hauling-east-valley-az"].includes(item.slug))
+    .filter((item) => popularServiceSlugs.includes(item.slug) || stormServices.some((storm) => storm.slug === item.slug) || ["commercial-cleanout-east-valley-az", "trash-hauling-east-valley-az", "construction-debris-removal-east-valley-az"].includes(item.slug))
     .slice(0, 6);
   const route = `services/${service.slug}`;
+  const pageFaqs = (service.faqs || [
+    [`What does ${service.name.toLowerCase()} include?`, `Southwest Hauling handles lifting, loading, hauling, and cleanup for approved non-hazardous ${service.name.toLowerCase()} jobs.`],
+    ["How do I get a quote?", `Call ${PHONE} or email photos and job details to ${EMAIL}. Photos help us quote the load and plan access.`]
+  ]).map(([question, answer]) => ({ question, answer }));
+  const stormMedia = isStorm ? `<section class="section storm-media">
+      <div class="section-heading"><h2>Real East Valley storm cleanup project</h2><p>Actual Southwest project media showing damage, removal work, debris, and clean after conditions.</p></div>
+      <div class="storm-feature">
+        <img src="${stormUrl(service.heroImage)}" alt="${esc(service.name)} project scene in the East Valley" loading="lazy">
+        ${service.video ? `<video controls preload="metadata" playsinline poster="${stormUrl(service.heroImage)}"><source src="${stormUrl(service.video)}"></video>` : ""}
+      </div>
+      <div class="storm-gallery">
+        ${(service.media || []).map((image) => `<figure><img src="${stormUrl(image)}" alt="${esc(stormAltText(image))}" loading="lazy"><figcaption>${esc(stormCaption(image))}</figcaption></figure>`).join("")}
+      </div>
+    </section>
+    <section class="section split before-after">
+      <div>
+        <h2>The damage. The cleanup.</h2>
+        <p>Storm cleanup is not landscaping fluff. It is tree, stump, branch, fence, trash, debris, loading, cleanup, and haul-away work after Arizona weather leaves a property blocked or messy.</p>
+      </div>
+      <div class="service-card">
+        <h3>Storm hit? Text us photos.</h3>
+        <p>Send clear photos of the tree, debris pile, stump, fence material, access path, and pickup city so Southwest can quote the cleanup.</p>
+        <a class="button primary" href="${QUOTE}">Text Photos for a Fast Quote</a>
+        <a class="contact-link" href="${PHONE_HREF}">Call ${PHONE}</a>
+      </div>
+    </section>` : "";
   const body = `<section class="section split">
       <div>
         <h2>${esc(service.name)} service details</h2>
@@ -647,6 +822,7 @@ function servicePage(service) {
         ${service.removes.map((item, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3>${esc(item)}</h3><p>We load and haul ${esc(item.toLowerCase())} as part of a clear, quote-based junk removal pickup.</p></article>`).join("")}
       </div>
     </section>
+    ${stormMedia}
     <section class="section why-choose">
       <div class="section-heading"><h2>Why choose Southwest Hauling?</h2><p>Local customers choose us for practical communication, fair pricing, and clean results.</p></div>
       <div class="why-grid">
@@ -664,6 +840,12 @@ function servicePage(service) {
       <div class="section-heading"><h2>Service areas for ${esc(service.name.toLowerCase())}</h2><p>Southwest Hauling serves these East Valley communities.</p></div>
       ${locationLinks()}
     </section>
+    <section class="section services">
+      <div class="section-heading"><h2>${esc(service.name)} FAQs</h2><p>Quick answers before you request a quote.</p></div>
+      <div class="service-grid">
+        ${pageFaqs.map((faq, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join("")}
+      </div>
+    </section>
     ${finalCta(`Call ${PHONE} or request a free quote for ${service.name.toLowerCase()} in the East Valley.`)}`;
   return layout({
     route,
@@ -672,7 +854,9 @@ function servicePage(service) {
     h1: service.h1,
     intro: service.hero,
     body,
-    schema: [serviceSchema(service, route)]
+    schema: [serviceSchema(service, route), faqSchema(pageFaqs)],
+    heroImage: isStorm ? stormUrl(service.heroImage) : "/assets/hero-junk-removal.png",
+    heroVideo: isStorm ? "" : "/assets/southwest-hauling-hero-video-01-scroll.mp4"
   });
 }
 
@@ -694,6 +878,16 @@ function locationPage(location) {
     </section>` : "";
   const title = `Junk Removal in ${location.city} AZ | Southwest Hauling`;
   const description = `Fast junk removal in ${location.city} AZ for homes, businesses, cleanouts, furniture, appliances, yard waste, and trash hauling.`;
+  const stormAngles = {
+    "Mesa": "wind-blown branches, palm debris, fence material, and blocked side yards after monsoon cells move through town",
+    "Gilbert": "fallen limbs, damaged outdoor items, yard debris, and cleanup piles around homes, rentals, and small businesses",
+    "Queen Creek": "large-lot tree debris, uprooted material, broken branches, fence debris, and post-storm trash piles",
+    "Chandler": "tree debris, parking area debris, damaged outdoor items, and property cleanup after high winds",
+    "San Tan Valley": "fallen branches, root-ball debris, yard waste, and storm trash from growing residential areas",
+    "Apache Junction": "heavy yard debris, tree limbs, loose outdoor debris, and property cleanup after desert storms",
+    "Tempe": "apartment, rental, office, and residential storm debris loads that need quick removal",
+    "Scottsdale": "tree debris, patio debris, fence material, and storm cleanup loads for homes and commercial properties"
+  };
   const body = `<section class="section split">
       <div>
         <h2>Local junk removal in ${esc(location.city)}</h2>
@@ -725,6 +919,24 @@ function locationPage(location) {
         <article><span>Clean</span><h3>Loaded and hauled</h3><p>We handle the lifting, loading, hauling, and cleanup for non-hazardous junk.</p></article>
       </div>
     </section>
+    <section class="section split storm-location">
+      <div>
+        <p class="reviews-kicker">Arizona Monsoon & Storm Cleanup</p>
+        <h2>Storm cleanup in ${esc(location.city)} AZ</h2>
+        <p>When storms leave ${esc(stormAngles[location.city] || "tree debris, branches, yard waste, damaged outdoor items, and cleanup piles")}, Southwest handles the loading, hauling, and cleanup. Send photos of the mess, access, and pickup area for a fast quote.</p>
+        <ul class="check-list">
+          <li>Fallen tree and large branch removal in ${esc(location.city)}</li>
+          <li>Storm debris hauling, yard cleanup, and bulk damaged-item removal</li>
+          <li>Stump, root-ball, fence debris, and non-hazardous trash haul-away</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <h3>Need storm debris gone?</h3>
+        <p>Start with the storm cleanup hub or call Southwest for quote-based hauling.</p>
+        <a class="button primary" href="/services/monsoon-storm-cleanup-east-valley-az/">Storm Cleanup Services</a>
+        <a class="contact-link" href="${PHONE_HREF}">Call ${PHONE}</a>
+      </div>
+    </section>
     <section class="section areas">
       <div class="section-heading"><h2>Nearby service areas</h2><p>Southwest Hauling also serves nearby East Valley cities.</p></div>
       <div class="area-links">${nearby.map((item) => `<a href="/locations/${item.slug}/">${esc(item.city)} AZ junk removal</a>`).join("")}<a href="/contact/">Contact Southwest Hauling</a></div>
@@ -751,7 +963,11 @@ function servicesHub() {
   const description = "Explore Southwest Hauling junk removal services across the East Valley AZ, including garage cleanouts, furniture removal, appliances, yard waste, and trash hauling.";
   const body = `<section class="section services" id="services">
       <div class="section-heading"><h2>Core junk removal services</h2><p>Choose the service page that matches your cleanup.</p></div>
-      ${serviceCards(services)}
+      ${serviceCards(services.filter((service) => !stormServices.some((storm) => storm.slug === service.slug)))}
+    </section>
+    <section class="section services storm-services-hub">
+      <div class="section-heading"><h2>Storm & Monsoon Cleanup</h2><p>Complete cleanup, removal, loading, and haul-away after Arizona storms leave trees, branches, stumps, fencing, trash, and debris behind.</p></div>
+      ${serviceCards(stormServices)}
     </section>
     <section class="section areas" id="service-areas">
       <div class="section-heading"><h2>East Valley service areas</h2><p>Browse local service area pages.</p></div>
@@ -862,6 +1078,27 @@ function updateHome() {
   html = html.replace(/<div class="area-links" aria-label="Service area links">[\s\S]*?<\/div>\s*<\/section>\s*<section class="section seo-content"/, `<div class="area-links" aria-label="Service area links">
         ${locations.map((location) => `<a href="/locations/${location.slug}/">${esc(location.city)} AZ junk removal</a>`).join("")}<a href="/contact/">Contact Southwest Hauling</a>
       </div>
+    </section>
+    <section class="section split homepage-storm">
+      <div>
+        <p class="reviews-kicker">Arizona Monsoon & Storm Cleanup</p>
+        <h2>When the storm leaves the mess, we&#39;ll make it disappear.</h2>
+        <p>Fallen trees. Broken limbs. Yard debris. Damaged fencing. Stumps. Trash. Southwest provides complete post-storm cleanup and debris removal throughout Queen Creek and the East Valley.</p>
+        <div class="inline-links">
+          <a href="/services/emergency-tree-removal-east-valley-az/">Tree Removal</a>
+          <a href="/services/stump-removal-east-valley-az/">Stump Removal</a>
+          <a href="/services/storm-debris-removal-east-valley-az/">Storm Debris</a>
+          <a href="/services/yard-waste-removal-east-valley-az/">Yard Cleanup</a>
+        </div>
+        <div class="hero-actions three-actions">
+          <a class="button primary" href="${QUOTE}">Text Photos for a Fast Quote</a>
+          <a class="button dark" href="/services/monsoon-storm-cleanup-east-valley-az/">Storm Cleanup Services</a>
+        </div>
+      </div>
+      <figure class="storm-home-media">
+        <img src="${stormAssetBase}/${stormAssets.homeBanner}" alt="${stormAltText(stormAssets.homeBanner)}" loading="lazy">
+        <figcaption>Tree, stump, branches, fence, trash, debris, cleanup, and haul-away.</figcaption>
+      </figure>
     </section>
     <section class="section seo-content"`);
   const reviewsSection = `<section class="section google-reviews" id="reviews" data-google-reviews>
