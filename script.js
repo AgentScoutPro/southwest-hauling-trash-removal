@@ -156,7 +156,11 @@ if (hero && heroVideo) {
     if (!reduceMotion.matches && duration) {
       heroVideoDuration = duration;
       heroTargetTime = duration * progress;
-      requestHeroScrub();
+      if (progress <= 0.003 || progress >= 0.997) {
+        seekHeroVideo(heroTargetTime);
+      } else {
+        requestHeroScrub();
+      }
     }
 
     heroTicking = false;
@@ -209,7 +213,7 @@ document.querySelectorAll(".scroll-sequence").forEach((sequence) => {
     const activeIndex = clamp(Math.floor(progress * sequencePanels.length), 0, sequencePanels.length - 1);
     const duration = videoDuration || sequenceVideo.duration || 0;
 
-    if (duration && sequenceVideo.seekable.length) {
+    if (duration && !reduceMotion.matches) {
       try {
         sequenceVideo.currentTime = duration * progress;
       } catch {
@@ -405,6 +409,7 @@ if (googleReviewsSection && googleReviewTrack) {
       /* Keep the compact fallback cards. */
     });
 
+  if (location.protocol !== "file:" && location.hostname !== "localhost" && location.hostname !== "127.0.0.1") {
   fetch("/api/google-reviews")
     .then((response) => {
       if (!response.ok) throw new Error("Google reviews unavailable");
@@ -429,4 +434,5 @@ if (googleReviewsSection && googleReviewTrack) {
     .catch(() => {
       /* Static Google review export remains visible until the API is configured. */
     });
+  }
 }

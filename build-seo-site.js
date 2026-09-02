@@ -154,8 +154,8 @@ const stormAssets = {
   afterOne: "storm-cleanup-property-east-valley-az-southwest-hauling-after-01.heic",
   afterTwo: "monsoon-property-cleanup-east-valley-az-southwest-hauling-after.heic",
   afterThree: "tree-debris-cleanup-east-valley-az-southwest-hauling-after-02.heic",
+  homeScrubVideo: "arizona-monsoon-storm-cleanup-southwest-hauling-scrub.mp4",
   videos: [
-    "arizona-monsoon-storm-cleanup-southwest-hauling.mp4",
     "fallen-tree-storm-cleanup-east-valley-az-southwest-hauling-project-video.mov",
     "2 fallen-tree-storm-cleanup-east-valley-az-southwest-hauling-project-video.mov",
     "3 fallen-tree-storm-cleanup-east-valley-az-southwest-hauling-project-video.mov",
@@ -1072,6 +1072,15 @@ function updateHome() {
   }
   html = html.replace(/<header class="site-header" id="top">[\s\S]*?<\/header>/, header());
   html = html.replace(/<footer class="site-footer">[\s\S]*?<\/footer>/, footer());
+  html = html.replace('<section class="hero compact-hero">', '<section class="hero">');
+  html = html
+    .replace(/assets\/southwest-hauling-hero-video-01-scroll\.mp4/g, "assets/southwest-hauling-hero-video-01-scrub.mp4")
+    .replace(/assets\/southwest-hauling-exploding-garage-002-scroll\.mp4/g, "assets/southwest-hauling-exploding-garage-002-scrub.mp4");
+  const stormStart = html.indexOf('<section class="scroll-sequence storm-scroll-sequence"');
+  const servicesStart = html.indexOf('<section class="section services" id="services">');
+  if (stormStart !== -1 && servicesStart !== -1 && stormStart < servicesStart) {
+    html = `${html.slice(0, stormStart)}${html.slice(servicesStart)}`;
+  }
   const serviceGrid = `<div class="service-grid">
         ${services.map((service, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3><a href="/services/${service.slug}/">${esc(service.name)}</a></h3><p>${esc(service.hero)}</p></article>`).join("\n        ")}
       </div>`;
@@ -1079,7 +1088,7 @@ function updateHome() {
         <div class="sequence-sticky">
           <div class="sequence-stage">
             <video class="sequence-video" muted playsinline preload="metadata" poster="assets/storm/${stormAssets.pillarBanner}">
-              <source src="assets/storm/${stormAssets.videos[0]}" type="video/mp4">
+              <source src="assets/storm/${stormAssets.homeScrubVideo}" type="video/mp4">
             </video>
             <div class="sequence-mask" aria-hidden="true"></div>
             <div class="sequence-copy">
