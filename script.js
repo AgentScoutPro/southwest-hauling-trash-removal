@@ -189,13 +189,14 @@ if (hero && heroVideo) {
   updateHeroScroll();
 }
 
-const sequence = document.querySelector(".scroll-sequence");
-const sequenceVideo = document.querySelector(".sequence-video");
-const sequencePanels = [...document.querySelectorAll(".sequence-panel")];
-const sequenceProgress = document.querySelector(".sequence-progress");
 const supportsScrollTimeline = CSS.supports("animation-timeline: view()");
 
-if (sequence && sequenceVideo && sequencePanels.length) {
+document.querySelectorAll(".scroll-sequence").forEach((sequence) => {
+  const sequenceVideo = sequence.querySelector(".sequence-video");
+  const sequencePanels = [...sequence.querySelectorAll(".sequence-panel")];
+  const sequenceProgress = sequence.querySelector(".sequence-progress");
+  if (!sequenceVideo || !sequencePanels.length) return;
+
   let videoDuration = 0;
   let ticking = false;
 
@@ -253,7 +254,7 @@ if (sequence && sequenceVideo && sequencePanels.length) {
     videoDuration = sequenceVideo.duration || 0;
   }
   updateSequence();
-}
+});
 
 const googleReviewsSection = document.querySelector("[data-google-reviews]");
 const googleReviewTrack = document.querySelector("[data-google-review-track]");

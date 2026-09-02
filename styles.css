@@ -669,6 +669,32 @@ h3 {
   font-size: clamp(17px, 2vw, 22px);
 }
 
+.storm-scroll-sequence {
+  min-height: 420vh;
+  background:
+    linear-gradient(180deg, #171512 0%, #1f211b 46%, #f8f0df 100%);
+}
+
+.storm-scroll-sequence .sequence-stage {
+  border-color: rgba(255, 193, 101, 0.2);
+}
+
+.storm-scroll-sequence .sequence-video {
+  filter: saturate(0.82) contrast(1.12) brightness(0.86);
+}
+
+.storm-scroll-sequence .sequence-mask {
+  background:
+    radial-gradient(circle at 52% 44%, rgba(23, 21, 18, 0.03), rgba(23, 21, 18, 0.22) 34%, rgba(23, 21, 18, 0.86) 78%, rgba(23, 21, 18, 0.98) 100%),
+    linear-gradient(90deg, rgba(23, 21, 18, 0.92), transparent 48%, rgba(23, 21, 18, 0.9)),
+    linear-gradient(180deg, rgba(23, 21, 18, 0.68), transparent 30%, rgba(23, 21, 18, 0.9));
+}
+
+.storm-scroll-sequence .sequence-panel p .button {
+  margin: 10px 10px 0 0;
+  text-decoration: none;
+}
+
 @keyframes sequenceStageFloat {
   0% {
     transform: translateZ(0) scale(0.985);

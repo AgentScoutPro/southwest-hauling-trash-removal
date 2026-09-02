@@ -155,6 +155,7 @@ const stormAssets = {
   afterTwo: "monsoon-property-cleanup-east-valley-az-southwest-hauling-after.heic",
   afterThree: "tree-debris-cleanup-east-valley-az-southwest-hauling-after-02.heic",
   videos: [
+    "arizona-monsoon-storm-cleanup-southwest-hauling.mp4",
     "fallen-tree-storm-cleanup-east-valley-az-southwest-hauling-project-video.mov",
     "2 fallen-tree-storm-cleanup-east-valley-az-southwest-hauling-project-video.mov",
     "3 fallen-tree-storm-cleanup-east-valley-az-southwest-hauling-project-video.mov",
@@ -1074,31 +1075,52 @@ function updateHome() {
   const serviceGrid = `<div class="service-grid">
         ${services.map((service, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3><a href="/services/${service.slug}/">${esc(service.name)}</a></h3><p>${esc(service.hero)}</p></article>`).join("\n        ")}
       </div>`;
+  const stormSequence = `<section class="scroll-sequence storm-scroll-sequence" id="storm-scroll-sequence" aria-label="Arizona monsoon and storm cleanup scroll sequence">
+        <div class="sequence-sticky">
+          <div class="sequence-stage">
+            <video class="sequence-video" muted playsinline preload="metadata" poster="assets/storm/${stormAssets.pillarBanner}">
+              <source src="assets/storm/${stormAssets.videos[0]}" type="video/mp4">
+            </video>
+            <div class="sequence-mask" aria-hidden="true"></div>
+            <div class="sequence-copy">
+              <article class="sequence-panel is-active" data-step="0">
+                <span>Arizona Monsoon &amp; Storm Cleanup</span>
+                <h2>Storm cleanup for Queen Creek and the East Valley.</h2>
+                <p>Southwest Hauling provides complete monsoon and storm cleanup throughout Queen Creek and the East Valley, including fallen tree removal, large branch and storm debris removal, stump and root-ball removal, property cleanup, loading and complete haul-away.</p>
+              </article>
+              <article class="sequence-panel" data-step="1">
+                <span>After the weather moves through</span>
+                <h2>When the storm<br>leaves the mess.</h2>
+                <p>Fallen trees, broken limbs, fencing debris, outdoor junk, and wind-blown trash can take over a property fast.</p>
+              </article>
+              <article class="sequence-panel" data-step="2">
+                <span>One call. Complete cleanup.</span>
+                <h2>We make it<br>disappear.</h2>
+                <p>Southwest handles the removal, loading, cleanup, and haul-away so the driveway, yard, or property can function again.</p>
+              </article>
+              <article class="sequence-panel" data-step="3">
+                <span>Tree. Stump. Branches. Debris.</span>
+                <h2>Fallen trees.<br>Broken limbs.<br>Storm debris.</h2>
+                <p>Stumps. Root balls. Fence debris. Yard cleanup. Complete haul-away across the East Valley.</p>
+              </article>
+              <article class="sequence-panel" data-step="4">
+                <span>Storm hit?</span>
+                <h2>Text photos<br>for a fast quote.</h2>
+                <p><a class="button primary" href="${QUOTE}">Text Photos for a Fast Quote</a> <a class="button secondary" href="/services/monsoon-storm-cleanup-east-valley-az/">Explore Storm Cleanup Services</a></p>
+              </article>
+            </div>
+            <div class="sequence-frame" aria-hidden="true"><span>Storm cleanup</span><i></i><strong class="sequence-progress">00%</strong></div>
+          </div>
+        </div>
+      </section>`;
+  html = html.replace(/<section class="section split homepage-storm">[\s\S]*?<\/section>\s*<section class="section seo-content"/, `<section class="section seo-content"`);
   html = html.replace(/<div class="service-grid">\s*<article><span>01<\/span><h3><a href="\/services\/junk-removal-east-valley-az\/">[\s\S]*?<\/div>\s*<\/section>\s*<section class="section why-choose"/, `${serviceGrid}\n    </section>\n    <section class="section why-choose"`);
+  html = html.replace(/<\/section>\s*<section class="section services" id="services">/, `</section>
+      ${stormSequence}
+    <section class="section services" id="services">`);
   html = html.replace(/<div class="area-links" aria-label="Service area links">[\s\S]*?<\/div>\s*<\/section>\s*<section class="section seo-content"/, `<div class="area-links" aria-label="Service area links">
         ${locations.map((location) => `<a href="/locations/${location.slug}/">${esc(location.city)} AZ junk removal</a>`).join("")}<a href="/contact/">Contact Southwest Hauling</a>
       </div>
-    </section>
-    <section class="section split homepage-storm">
-      <div>
-        <p class="reviews-kicker">Arizona Monsoon & Storm Cleanup</p>
-        <h2>When the storm leaves the mess, we&#39;ll make it disappear.</h2>
-        <p>Fallen trees. Broken limbs. Yard debris. Damaged fencing. Stumps. Trash. Southwest provides complete post-storm cleanup and debris removal throughout Queen Creek and the East Valley.</p>
-        <div class="inline-links">
-          <a href="/services/emergency-tree-removal-east-valley-az/">Tree Removal</a>
-          <a href="/services/stump-removal-east-valley-az/">Stump Removal</a>
-          <a href="/services/storm-debris-removal-east-valley-az/">Storm Debris</a>
-          <a href="/services/yard-waste-removal-east-valley-az/">Yard Cleanup</a>
-        </div>
-        <div class="hero-actions three-actions">
-          <a class="button primary" href="${QUOTE}">Text Photos for a Fast Quote</a>
-          <a class="button dark" href="/services/monsoon-storm-cleanup-east-valley-az/">Storm Cleanup Services</a>
-        </div>
-      </div>
-      <figure class="storm-home-media">
-        <img src="${stormAssetBase}/${stormAssets.homeBanner}" alt="${stormAltText(stormAssets.homeBanner)}" loading="lazy">
-        <figcaption>Tree, stump, branches, fence, trash, debris, cleanup, and haul-away.</figcaption>
-      </figure>
     </section>
     <section class="section seo-content"`);
   const reviewsSection = `<section class="section google-reviews" id="reviews" data-google-reviews>
