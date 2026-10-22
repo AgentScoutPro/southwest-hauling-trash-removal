@@ -214,7 +214,7 @@ const stormServices = [
     heroImage: stormAssets.project,
     media: [stormAssets.project, stormAssets.damageBefore, stormAssets.branches, stormAssets.pillarBanner],
     video: stormAssets.videos[2],
-    faqs: [["What storm debris can you haul?", "We haul branches, vegetation, fencing debris, outdoor items, bulk debris, yard waste, loose wind-blown material, and non-hazardous trash."], ["Do you handle fence debris?", "Yes. We can remove damaged fencing debris as haul-away, but we do not claim fence repair."], ["Can you load the debris for me?", "Yes. Loading and haul-away are part of the service."]]
+    faqs: [["What storm debris can you haul?", "We haul branches, vegetation, fencing debris, outdoor items, bulk debris, yard waste, loose wind-blown material, and non-hazardous trash."], ["Do you handle fence debris?", "Yes. We remove damaged fencing debris as haul-away. Small fence and gate repairs are available through our handyman services."], ["Can you load the debris for me?", "Yes. Loading and haul-away are part of the service."]]
   },
   {
     slug: "stump-removal-east-valley-az",
@@ -246,6 +246,77 @@ const stormServices = [
 ];
 
 services.push(...stormServices);
+
+const HANDYMAN_QUOTE = `${EMAIL_HREF}?subject=Free%20Handyman%20Quote%20Request`;
+
+const handymanService = {
+  slug: "handyman-services-east-valley-az",
+  name: "Handyman Services",
+  h1: "Handyman Services in the East Valley AZ",
+  title: "Handyman Services East Valley AZ | Southwest Hauling",
+  meta: "Local handyman services in the East Valley AZ: TV mounting, drywall repair, furniture assembly, shelving, mirror hanging, and small home fixes in Mesa, Gilbert, Queen Creek, and Chandler.",
+  hero: "Get TVs mounted, drywall patched, shelves and mirrors hung, and small home fixes handled by the same local East Valley crew that clears your junk.",
+  tagline: "We clear the junk and help you fix the rest.",
+  quote: HANDYMAN_QUOTE,
+  details: "Southwest Hauling handles small handyman jobs for homeowners, renters, landlords, and property managers. Many customers ask for a quick fix while we are already on site clearing junk, so we made it part of the service. Send photos for a free quote, choose a time, and we bring the tools, hardware, and cleanup.",
+  checks: [
+    "Free quote before the job begins",
+    "TV mounting, drywall repair, shelving, and furniture assembly",
+    "Book it on its own or add it to a junk removal pickup",
+    "Serving Mesa, Gilbert, Queen Creek, Chandler, San Tan Valley, and nearby East Valley communities"
+  ],
+  quoteCopy: "Send photos, your city, and a quick description of what needs mounting, hanging, patching, or fixing for a fast quote from Southwest Hauling.",
+  feature: {
+    image: "/assets/handyman/handyman-services-east-valley-az-southwest-hauling-chris.jpg",
+    alt: "Illustration of Chris from Southwest Hauling holding a hammer and screwdriver, with the work truck and trailer behind him",
+    heading: "One crew for the junk and the fixes",
+    copy: "Chris and the Southwest crew already spend the day inside East Valley homes, garages, and rentals. Now when you need a TV mounted, a wall patched, or a list of small jobs finished, you can book the same people you trust to clear the junk.",
+    points: [
+      "Same local crew for hauling and handyman work",
+      "Photos first, so we arrive with the right hardware",
+      "We clean up and haul away boxes, packaging, and old parts"
+    ]
+  },
+  cardsHeading: "What we handle",
+  cardsIntro: "Our most-requested handyman jobs in the East Valley. Plus much more. Just ask!",
+  cards: [
+    ["TV Mounting", "We mount flat screens on the wall, level and secure, with the bracket anchored into studs."],
+    ["Drywall Repair", "We patch holes, dents, doorknob damage, and anchor holes so the wall is smooth and ready for paint."],
+    ["Furniture Assembly", "We build beds, desks, dressers, shelving units, and patio sets, then haul away the boxes."],
+    ["Painting & Touch-Ups", "We touch up scuffs, patched spots, trim, and accent walls so rooms look clean again."],
+    ["Door Repairs", "We fix sticking and squeaky doors, loose hinges, and latches that will not catch."],
+    ["Shelving Installation", "We install floating shelves, closet shelving, and garage storage that sits level and holds weight."],
+    ["Mirror & Picture Hanging", "We hang heavy mirrors, framed art, and gallery walls with the right anchors for your wall."],
+    ["Fence & Gate Repairs", "We fix sagging gates, loose boards, and broken latches, and haul away the damaged pieces."],
+    ["Honey-Do Lists", "Hand us the list. We knock out the small jobs in one visit so your weekend stays free."]
+  ],
+  whyCards: [
+    ["Local", "East Valley based", "We are rooted in Queen Creek and work in homes across Mesa, Gilbert, Chandler, and San Tan Valley every week."],
+    ["Clear", "Photo-friendly quotes", "Photos of the wall, the item, and the space help us quote quickly, so there are fewer surprises when we arrive."],
+    ["Ready", "One crew, one visit", "Clear the junk and get the fixes done in the same trip, without booking a second company."],
+    ["Useful", "Homes and rentals", "Book help for houses, apartments, rentals, move-ins, move-outs, and property turnovers."]
+  ],
+  relatedIntro: "Pair your handyman job with a junk removal pickup.",
+  related: [
+    "junk-removal-east-valley-az",
+    "garage-cleanout-east-valley-az",
+    "furniture-removal-east-valley-az",
+    "property-cleanouts-east-valley-az",
+    "moving-help-east-valley-az",
+    "estate-cleanout-east-valley-az"
+  ],
+  areaLinkLabel: "handyman services",
+  ctaHeading: "Ready to cross it off the list?",
+  faqs: [
+    ["What handyman jobs do you take on?", "Southwest Hauling handles small home jobs such as TV mounting, drywall repair, furniture assembly, painting and touch-ups, door repairs, shelving installation, mirror and picture hanging, fence and gate repairs, and honey-do lists."],
+    ["Can I add a handyman job to my junk removal pickup?", "Yes. Tell us what you need when you request your quote and we will plan both for the same visit."],
+    ["Do I need junk removal to book handyman help?", "No. You can book a handyman job on its own."],
+    ["Do I need to supply the mount or hardware?", "Have the TV mount, shelf, or mirror on site. We bring the tools, anchors, and fasteners. Send a photo if you are unsure what you have."],
+    ["How do I get a quote?", `Call ${PHONE} or email photos and job details to ${EMAIL}. Photos help us quote the job and bring the right hardware.`]
+  ]
+};
+
+services.push(handymanService);
 
 const locations = [
   { slug: "mesa-az", city: "Mesa", angle: "neighborhoods, rentals, garages, and business cleanouts", nearby: ["gilbert-az", "tempe-az", "apache-junction-az"] },
@@ -563,7 +634,7 @@ function footer() {
   return `<footer class="site-footer">
       <div>
         <strong>${BUSINESS}</strong>
-        <p>Fast junk removal, trash hauling, cleanouts, furniture removal, appliance removal, and yard waste removal across the East Valley.</p>
+        <p>Fast junk removal, trash hauling, cleanouts, furniture removal, appliance removal, yard waste removal, and handyman services across the East Valley.</p>
         <p>${ADDRESS}</p>
       </div>
       <div class="footer-links footer-mega" aria-label="Footer service links">
@@ -580,7 +651,7 @@ function footer() {
     </footer>`;
 }
 
-function layout({ route, title, description, h1, intro, body, schema = [], heroImage = "/assets/hero-junk-removal.png", heroVideo = "/assets/southwest-hauling-hero-video-01-scroll.mp4" }) {
+function layout({ route, title, description, h1, intro, body, schema = [], heroImage = "/assets/hero-junk-removal.png", heroVideo = "/assets/southwest-hauling-hero-video-01-scroll.mp4", tagline = "You Call It, We&#39;ll Haul It", quote = QUOTE }) {
   return `<!doctype html>
 <html lang="en">
   <head>
@@ -607,10 +678,10 @@ function layout({ route, title, description, h1, intro, body, schema = [], heroI
         <div class="hero-content">
           <p class="service-area">East Valley of Phoenix, Arizona</p>
           <h1>${esc(h1)}</h1>
-          <p class="tagline">You Call It, We&#39;ll Haul It</p>
+          <p class="tagline">${tagline}</p>
           <p class="local-intro">${esc(intro)}</p>
           <div class="hero-actions">
-            <a class="button primary" href="${QUOTE}">Get Free Quote</a>
+            <a class="button primary" href="${quote}">Get Free Quote</a>
             <a class="button secondary" href="${PHONE_HREF}">Call ${PHONE}</a>
           </div>
         </div>
@@ -663,9 +734,9 @@ function stormUrl(filename) {
   return `${stormAssetBase}/${encodeURIComponent(filename).replace(/%2F/g, "/")}`;
 }
 
-function locationLinks(currentSlug = "") {
+function locationLinks(currentSlug = "", label = "junk removal") {
   return `<div class="area-links" aria-label="Service area links">
-        ${locations.filter((location) => location.slug !== currentSlug).map((location) => `<a href="/locations/${location.slug}/">${esc(location.city)} AZ junk removal</a>`).join("")}
+        ${locations.filter((location) => location.slug !== currentSlug).map((location) => `<a href="/locations/${location.slug}/">${esc(location.city)} AZ ${esc(label)}</a>`).join("")}
       </div>`;
 }
 
@@ -675,12 +746,12 @@ function queenCreekAreaLinks(currentSlug = "") {
       </div>`;
 }
 
-function finalCta(copy = "Send photos and details for a free East Valley junk removal quote.") {
+function finalCta(copy = "Send photos and details for a free East Valley junk removal quote.", heading = "Ready to clear the junk?", quote = QUOTE) {
   return `<section class="section cta-section" id="contact">
-      <h2>Ready to clear the junk?</h2>
+      <h2>${esc(heading)}</h2>
       <p>${esc(copy)}</p>
       <div class="hero-actions three-actions">
-        <a class="button primary" href="${QUOTE}">Get Free Quote</a>
+        <a class="button primary" href="${quote}">Get Free Quote</a>
         <a class="button dark" href="${PHONE_HREF}">Call ${PHONE}</a>
       </div>
     </section>`;
@@ -865,6 +936,82 @@ function servicePage(service) {
   });
 }
 
+function handymanPage(service) {
+  const route = `services/${service.slug}`;
+  const related = service.related.map((slug) => services.find((item) => item.slug === slug)).filter(Boolean);
+  const pageFaqs = service.faqs.map(([question, answer]) => ({ question, answer }));
+  const body = `<section class="section split">
+      <div>
+        <h2>${esc(service.name)} service details</h2>
+        <p>${esc(service.details)}</p>
+        <ul class="check-list">
+          ${service.checks.map((item) => `<li>${esc(item)}</li>`).join("\n          ")}
+        </ul>
+      </div>
+      <div class="service-card">
+        <h3>Get a quote for ${esc(service.name.toLowerCase())}</h3>
+        <p>${esc(service.quoteCopy)}</p>
+        <a class="button primary" href="${service.quote}">Get Free Quote</a>
+        <a class="contact-link" href="/contact/">Contact page</a>
+      </div>
+    </section>
+    <section class="section services">
+      <div class="section-heading"><h2>${esc(service.cardsHeading)}</h2><p>${esc(service.cardsIntro)}</p></div>
+      <div class="service-grid">
+        ${service.cards.map(([title, text], index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join("")}
+      </div>
+    </section>
+    <section class="section split handyman-feature">
+      <figure class="handyman-figure">
+        <img src="${esc(service.feature.image)}" alt="${esc(service.feature.alt)}" width="472" height="768" loading="lazy">
+      </figure>
+      <div>
+        <p class="reviews-kicker">Southwest Hauling &amp; Handyman Services</p>
+        <h2>${esc(service.feature.heading)}</h2>
+        <p>${esc(service.feature.copy)}</p>
+        <ul class="check-list">
+          ${service.feature.points.map((item) => `<li>${esc(item)}</li>`).join("\n          ")}
+        </ul>
+        <div class="hero-actions">
+          <a class="button primary" href="${service.quote}">Get Free Quote</a>
+          <a class="button dark" href="${PHONE_HREF}">Call or Text ${PHONE}</a>
+        </div>
+      </div>
+    </section>
+    <section class="section why-choose">
+      <div class="section-heading"><h2>Why choose Southwest Hauling?</h2><p>Local customers choose us for practical communication, fair pricing, and clean results.</p></div>
+      <div class="why-grid">
+        ${service.whyCards.map(([label, title, text]) => `<article><span>${esc(label)}</span><h3>${esc(title)}</h3><p>${esc(text)}</p></article>`).join("\n        ")}
+      </div>
+    </section>
+    <section class="section services">
+      <div class="section-heading"><h2>Related services</h2><p>${esc(service.relatedIntro)}</p></div>
+      ${serviceCards(related, service.slug)}
+    </section>
+    <section class="section areas" id="service-areas">
+      <div class="section-heading"><h2>Service areas for ${esc(service.name.toLowerCase())}</h2><p>Southwest Hauling serves these East Valley communities.</p></div>
+      ${locationLinks("", service.areaLinkLabel)}
+    </section>
+    <section class="section services">
+      <div class="section-heading"><h2>${esc(service.name)} FAQs</h2><p>Quick answers before you request a quote.</p></div>
+      <div class="service-grid">
+        ${pageFaqs.map((faq, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3>${esc(faq.question)}</h3><p>${esc(faq.answer)}</p></article>`).join("")}
+      </div>
+    </section>
+    ${finalCta(`Call ${PHONE} or request a free quote for ${service.name.toLowerCase()} in the East Valley.`, service.ctaHeading, service.quote)}`;
+  return layout({
+    route,
+    title: service.title,
+    description: service.meta,
+    h1: service.h1,
+    intro: service.hero,
+    body,
+    schema: [serviceSchema(service, route), faqSchema(pageFaqs)],
+    tagline: esc(service.tagline),
+    quote: service.quote
+  });
+}
+
 function locationPage(location) {
   const route = `locations/${location.slug}`;
   const popular = services.filter((service) => popularServiceSlugs.includes(service.slug)).slice(0, 6);
@@ -948,7 +1095,7 @@ function locationPage(location) {
     </section>
     <section class="section services">
       <div class="section-heading"><h2>Related service links</h2><p>Explore common junk removal services for ${esc(location.city)} customers.</p></div>
-      ${serviceCards(services.slice(0, 8))}
+      ${serviceCards([...services.slice(0, 8), handymanService])}
     </section>
     ${queenCreekHub}
     ${finalCta(`Call ${PHONE} or request a free quote for junk removal in ${location.city} AZ.`)}`;
@@ -968,7 +1115,11 @@ function servicesHub() {
   const description = "Explore Southwest Hauling junk removal services across the East Valley AZ, including garage cleanouts, furniture removal, appliances, yard waste, and trash hauling.";
   const body = `<section class="section services" id="services">
       <div class="section-heading"><h2>Core junk removal services</h2><p>Choose the service page that matches your cleanup.</p></div>
-      ${serviceCards(services.filter((service) => !stormServices.some((storm) => storm.slug === service.slug)))}
+      ${serviceCards(services.filter((service) => service !== handymanService && !stormServices.some((storm) => storm.slug === service.slug)))}
+    </section>
+    <section class="section services">
+      <div class="section-heading"><h2>Handyman services</h2><p>TV mounting, drywall repair, furniture assembly, shelving, and small home fixes from the same local crew. We clear the junk and help you fix the rest.</p></div>
+      ${serviceCards([handymanService])}
     </section>
     <section class="section services storm-services-hub">
       <div class="section-heading"><h2>Storm & Monsoon Cleanup</h2><p>Complete cleanup, removal, loading, and haul-away after Arizona storms leave trees, branches, stumps, fencing, trash, and debris behind.</p></div>
@@ -1185,7 +1336,7 @@ updateHome();
 write("services", servicesHub());
 write("about", aboutPage());
 write("contact", contactPage());
-services.forEach((service) => write(`services/${service.slug}`, servicePage(service)));
+services.forEach((service) => write(`services/${service.slug}`, service === handymanService ? handymanPage(service) : servicePage(service)));
 locations.forEach((location) => write(`locations/${location.slug}`, locationPage(location)));
 queenCreekAreas.forEach((area) => write(`locations/queen-creek-az/${area.slug}`, queenCreekAreaPage(area)));
 

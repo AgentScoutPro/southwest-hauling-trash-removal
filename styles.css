@@ -2300,3 +2300,36 @@ details p {
     min-height: 260px;
   }
 }
+
+.handyman-feature {
+  background: rgba(36, 78, 55, 0.08);
+}
+
+.handyman-figure {
+  margin: 0;
+  max-width: 300px;
+  justify-self: center;
+}
+
+.handyman-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+}
+
+@media (min-width: 900px) {
+  .handyman-feature {
+    grid-template-columns: minmax(280px, 0.45fr) minmax(0, 1fr);
+  }
+
+  .handyman-figure {
+    max-width: 420px;
+  }
+}
+
+.handyman-feature .hero-actions {
+  justify-content: flex-start;
+  margin-top: 24px;
+}
