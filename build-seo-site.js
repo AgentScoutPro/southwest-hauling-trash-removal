@@ -3,7 +3,8 @@ const path = require("path");
 
 const ROOT = __dirname;
 const SITE = "https://www.southwestjunkhauling.com";
-const BUSINESS = "Southwest Hauling & Junk Removal LLC";
+const BUSINESS = "Southwest Hauling & Handyman Services LLC";
+const FORMER_NAME = "Southwest Hauling & Junk Removal LLC";
 const BRAND = "Southwest Hauling";
 const PHONE = "480-490-8033";
 const PHONE_HREF = "tel:+14804908033";
@@ -514,6 +515,8 @@ function localBusinessSchema(description) {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: BUSINESS,
+    alternateName: [BRAND, FORMER_NAME],
+    slogan: "We clear the junk and help you fix the rest.",
     url: SITE,
     telephone: "+1-480-490-8033",
     email: EMAIL,
@@ -592,8 +595,8 @@ function metadata({ title, description, route, schema = [] }) {
 
 function header() {
   return `<header class="site-header" id="top">
-      <a class="brand brand-with-logo" href="/" aria-label="Southwest Hauling and Junk Removal home">
-        <img src="/assets/southwest-logo.png" alt="Southwest Hauling & Junk Removal logo">
+      <a class="brand brand-with-logo" href="/" aria-label="Southwest Hauling and Handyman Services home">
+        <img src="/assets/southwest-logo.png" alt="Southwest Hauling & Handyman Services logo">
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span>Menu</span>
@@ -1135,16 +1138,17 @@ function servicesHub() {
 
 function aboutPage() {
   const route = "about";
-  const title = "About Southwest Hauling & Junk Removal LLC | East Valley AZ";
-  const description = "Learn about Southwest Hauling & Junk Removal LLC, a Queen Creek junk removal company serving Mesa, Gilbert, Chandler, San Tan Valley, and the East Valley.";
+  const title = "About Southwest Hauling & Handyman Services LLC | East Valley AZ";
+  const description = "Learn about Southwest Hauling & Handyman Services LLC, a Queen Creek junk removal and handyman company serving Mesa, Gilbert, Chandler, San Tan Valley, and the East Valley.";
   const body = `<section class="section split">
       <div>
         <h2>Locally owned. East Valley focused.</h2>
-        <p>${BUSINESS} helps homeowners and businesses clear clutter with fast response, honest communication, and practical hauling service.</p>
+        <p>${BUSINESS} helps homeowners and businesses clear clutter, finish small home fixes, and get spaces usable again with fast response, honest communication, and practical hauling service.</p>
         <ul class="check-list">
           <li>Based in Queen Creek, Arizona</li>
           <li>Serving Mesa, Gilbert, Chandler, San Tan Valley, Apache Junction, Tempe, Scottsdale, and nearby communities</li>
           <li>Residential and commercial junk removal</li>
+          <li>Handyman services: TV mounting, drywall repair, furniture assembly, and small home fixes</li>
           <li>Free quote requests by phone or email</li>
         </ul>
       </div>
@@ -1152,13 +1156,13 @@ function aboutPage() {
     </section>
     <section class="section services"><div class="section-heading"><h2>Helpful service links</h2><p>Explore the most requested East Valley hauling services.</p></div>${serviceCards(services.slice(0, 6))}</section>
     ${finalCta()}`;
-  return layout({ route, title, description, h1: "About Southwest Hauling & Junk Removal", intro: "A local East Valley junk removal company built around clear quotes, hard work, and clean results.", body });
+  return layout({ route, title, description, h1: "About Southwest Hauling & Handyman Services", intro: "A local East Valley junk removal and handyman company built around clear quotes, hard work, and clean results.", body });
 }
 
 function contactPage() {
   const route = "contact";
   const title = "Contact Southwest Hauling | Free Junk Removal Quote";
-  const description = "Contact Southwest Hauling & Junk Removal LLC for a free junk removal quote in the East Valley AZ. Call 480-490-8033 or email Chris@southwestjunkhauling.com.";
+  const description = "Contact Southwest Hauling & Handyman Services LLC for a free junk removal or handyman quote in the East Valley AZ. Call 480-490-8033 or email Chris@southwestjunkhauling.com.";
   const body = `<section class="section estimate" id="estimate">
       <div class="section-heading"><h2>Contact and free quote</h2><p>Call, email, or send a quote request for junk removal in Mesa, Gilbert, Queen Creek, Chandler, San Tan Valley, and the East Valley.</p></div>
       <form id="estimate-form" action="${EMAIL_HREF}" method="post" enctype="text/plain">
@@ -1211,8 +1215,8 @@ function updateHome() {
   let html = fs.readFileSync(file, "utf8");
   html = html.replace(/<title>[\s\S]*?(?=\s*<link rel="preconnect")/, metadata({
     route: "/",
-    title: "East Valley Junk Removal & Hauling | Southwest Hauling",
-    description: "Southwest Hauling provides fast junk removal and hauling for homes and businesses across Mesa, Gilbert, Queen Creek, Chandler, San Tan Valley, and the East Valley."
+    title: "Junk Removal, Hauling & Handyman East Valley AZ | Southwest Hauling",
+    description: "Southwest Hauling & Handyman Services provides fast junk removal, hauling, and handyman services for homes and businesses across Mesa, Gilbert, Queen Creek, Chandler, and San Tan Valley."
   }) + "\n    ");
   html = html
     .replace(/<link rel="stylesheet" href="\/?styles\.css">/g, '<link rel="stylesheet" href="styles.css">')

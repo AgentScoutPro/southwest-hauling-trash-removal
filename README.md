@@ -1,6 +1,6 @@
-# Southwest Hauling & Trash Removal
+# Southwest Hauling & Handyman Services
 
-Static marketing site for Southwest Hauling & Trash Removal.
+Static marketing site for Southwest Hauling & Handyman Services.
 
 ## Local preview
 

@@ -113,7 +113,7 @@ function schema(type, title, description) {
   const localBusiness = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Southwest Hauling & Junk Removal",
+    name: "Southwest Hauling & Handyman Services",
     email: EMAIL,
     telephone: "+1-480-490-8033",
     image: "https://southwestjunkhauling.com/assets/southwest-logo.png",
@@ -136,8 +136,8 @@ function schema(type, title, description) {
 
 function header() {
   return `<header class="site-header" id="top">
-      <a class="brand brand-with-logo" href="/" aria-label="Southwest Hauling and Junk Removal home">
-        <img src="/assets/southwest-logo.png" alt="Southwest Hauling & Junk Removal logo">
+      <a class="brand brand-with-logo" href="/" aria-label="Southwest Hauling and Handyman Services home">
+        <img src="/assets/southwest-logo.png" alt="Southwest Hauling & Handyman Services logo">
       </a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">
         <span>Menu</span>
@@ -177,7 +177,7 @@ function bottomCta() {
 function footer() {
   return `<footer class="site-footer">
       <div>
-        <strong>Southwest Hauling & Junk Removal</strong>
+        <strong>Southwest Hauling & Handyman Services</strong>
         <p>Fast, affordable junk removal for homes, businesses, garages, storage units, yards, rentals, and full property cleanouts across the East Valley.</p>
       </div>
       <div class="footer-links" aria-label="Footer internal links">
@@ -306,7 +306,7 @@ function layout({ title, description, h1, intro, main, type = "page" }) {
 
 function home() {
   const main = `<section class="trust-strip" aria-label="Trust badges">
-      ${trustBadges.map((badge) => `<div><strong>${esc(badge)}</strong><span>Southwest Hauling & Junk Removal</span></div>`).join("")}
+      ${trustBadges.map((badge) => `<div><strong>${esc(badge)}</strong><span>Southwest Hauling & Handyman Services</span></div>`).join("")}
     </section>
     <section class="section brand-statement">
       <p>${esc(MISSION)}</p>
@@ -412,7 +412,7 @@ function servicesHub() {
     </section>`;
   return layout({
     title: "Junk Removal Services in the East Valley | Southwest Hauling",
-    description: "Services hub for Southwest Hauling & Junk Removal: furniture removal, appliance removal, garage cleanouts, yard debris, property cleanouts, storage unit cleanouts, estate cleanouts, construction debris, mattress removal, and same day junk removal.",
+    description: "Services hub for Southwest Hauling & Handyman Services: furniture removal, appliance removal, garage cleanouts, yard debris, property cleanouts, storage unit cleanouts, estate cleanouts, construction debris, mattress removal, and same day junk removal.",
     h1: "Junk Removal Services in the East Valley",
     intro: "Southwest Hauling provides affordable junk removal, junk hauling, single item pickups, and full cleanouts for homes and businesses across Mesa, Gilbert, Chandler, Queen Creek, Tempe, Scottsdale, and nearby East Valley communities.",
     main
@@ -439,8 +439,8 @@ function aboutPage() {
       </div>
     </section>`;
   return layout({
-    title: "About Southwest Hauling & Junk Removal | East Valley AZ",
-    description: "Learn about Southwest Hauling & Junk Removal, a locally owned, community focused East Valley junk hauling company offering honest pricing and fast response.",
+    title: "About Southwest Hauling & Handyman Services | East Valley AZ",
+    description: "Learn about Southwest Hauling & Handyman Services, a locally owned, community focused East Valley junk hauling company offering honest pricing and fast response.",
     h1: "About Southwest Hauling",
     intro: "Dependable, fast, local, hard-working, honest, and rugged but approachable: Southwest Hauling serves the East Valley with respectful cleanup for single items, yards, garages, storage units, businesses, and full property cleanouts.",
     main
@@ -457,7 +457,7 @@ function contactPage() {
     </section>`;
   return layout({
     title: "Contact Southwest Hauling | Free Junk Removal Quote",
-    description: "Contact Southwest Hauling & Junk Removal for a free East Valley junk removal quote. Call, email Chris, or send details for furniture, appliances, garages, yards, storage units, and cleanouts.",
+    description: "Contact Southwest Hauling & Handyman Services for a free East Valley junk removal quote. Call, email Chris, or send details for furniture, appliances, garages, yards, storage units, and cleanouts.",
     h1: "Contact Southwest Hauling for a Free Quote",
     intro: "Need local junk removal near you? Send your name, phone, email, address, city, what needs to be removed, photos, preferred pickup date, and a message for a fast free quote.",
     main
@@ -491,7 +491,7 @@ function servicePage([slug, name, headline, copy]) {
     </section>`;
   return layout({
     title: `${name} East Valley AZ | Southwest Hauling`,
-    description: `${headline} from Southwest Hauling & Junk Removal. Fast, affordable junk hauling for Mesa, Gilbert, Chandler, Queen Creek, Tempe, Scottsdale, and the East Valley.`,
+    description: `${headline} from Southwest Hauling & Handyman Services. Fast, affordable junk hauling for Mesa, Gilbert, Chandler, Queen Creek, Tempe, Scottsdale, and the East Valley.`,
     h1: headline,
     intro: `${headline} for homes, businesses, garages, storage units, yards, rentals, and full property cleanouts across the East Valley. Request a free quote from locally owned Southwest Hauling.`,
     main
@@ -525,7 +525,7 @@ function cityPage([slug, city, label]) {
     </section>`;
   return layout({
     title: `${label} | Southwest Hauling East Valley AZ`,
-    description: `${label} from Southwest Hauling & Junk Removal. Fast, affordable hauling for furniture, appliances, garage cleanouts, yard debris, storage units, property cleanouts, and same day junk removal when available.`,
+    description: `${label} from Southwest Hauling & Handyman Services. Fast, affordable hauling for furniture, appliances, garage cleanouts, yard debris, storage units, property cleanouts, and same day junk removal when available.`,
     h1: `${label} in ${city}, AZ`,
     intro: `Fast, affordable junk removal in ${city} for homes, businesses, garages, storage units, yards, rentals, and full property cleanouts. Southwest Hauling serves ${city} and nearby East Valley communities.`,
     main

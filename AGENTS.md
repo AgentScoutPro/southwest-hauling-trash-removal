@@ -1,12 +1,13 @@
 # AGENTS.md
 
-Project guidance for Codex and future AI agents working on the Southwest Hauling & Junk Removal website.
+Project guidance for Codex and future AI agents working on the Southwest Hauling & Handyman Services website.
 
 ## Project Identity
 
 This site represents:
 
-- Business: Southwest Hauling & Junk Removal LLC
+- Business: Southwest Hauling & Handyman Services LLC (formerly Southwest Hauling & Junk Removal LLC)
+- Tagline: We clear the junk and help you fix the rest.
 - Phone: 480-490-8033
 - Email: Chris@southwestjunkhauling.com
 - Address: 39111 N Zampino St, Queen Creek, AZ 85140
