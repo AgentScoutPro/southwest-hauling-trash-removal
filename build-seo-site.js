@@ -1,6 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
+const neighborhoods = require("./seo/neighborhoods");
+const { newServices, scope } = require("./seo/neighborhood-services");
+
 const ROOT = __dirname;
 const SITE = "https://www.southwestjunkhauling.com";
 const BUSINESS = "Southwest Hauling & Handyman Services LLC";
@@ -317,7 +320,7 @@ const handymanService = {
   ]
 };
 
-services.push(handymanService);
+services.push(handymanService, ...newServices);
 
 const locations = [
   { slug: "mesa-az", city: "Mesa", angle: "neighborhoods, rentals, garages, and business cleanouts", nearby: ["gilbert-az", "tempe-az", "apache-junction-az"] },
@@ -329,6 +332,13 @@ const locations = [
   { slug: "tempe-az", city: "Tempe", angle: "apartments, move-outs, office cleanouts, and furniture", nearby: ["mesa-az", "chandler-az", "scottsdale-az"] },
   { slug: "scottsdale-az", city: "Scottsdale", angle: "home cleanouts, furniture pickup, yard waste, and business hauling", nearby: ["tempe-az", "mesa-az", "chandler-az"] }
 ];
+
+const neighborhoodServices = services.map((service) => {
+  const key = service.slug.replace(/-east-valley-az$/, "");
+  const details = scope[key];
+  if (!details) throw new Error(`Missing neighborhood service details for ${service.slug}`);
+  return { ...details, key, slug: details.slug || key, name: details.title || service.name, service };
+});
 
 const queenCreekAreas = [
   {
@@ -503,11 +513,15 @@ function sentenceList(items) {
 function write(route, html) {
   const target = route === "/" ? path.join(ROOT, "index.html") : path.join(ROOT, route, "index.html");
   fs.mkdirSync(path.dirname(target), { recursive: true });
-  fs.writeFileSync(target, html);
+  fs.writeFileSync(target, normalizePageLinks(html));
 }
 
 function canonical(route) {
-  return `${SITE}${route === "/" ? "/" : `/${route.replace(/^\/|\/$/g, "")}/`}`;
+  return `${SITE}/${route.replace(/^\/|\/$/g, "")}`;
+}
+
+function normalizePageLinks(html) {
+  return html.replace(/href="(\/(?:services|locations|about|contact)(?:\/[^"#?]*)?)\/(#|")/g, 'href="$1$2');
 }
 
 function localBusinessSchema(description) {
@@ -846,7 +860,7 @@ function queenCreekAreaPage(area) {
 
 function servicePage(service) {
   const isStorm = stormServices.some((item) => item.slug === service.slug);
-  const related = services
+  const related = service.related ? service.related.map((slug) => services.find((item) => item.slug === slug)) : services
     .filter((item) => item.slug !== service.slug)
     .filter((item) => popularServiceSlugs.includes(item.slug) || stormServices.some((storm) => storm.slug === item.slug) || ["commercial-cleanout-east-valley-az", "trash-hauling-east-valley-az", "construction-debris-removal-east-valley-az"].includes(item.slug))
     .slice(0, 6);
@@ -855,6 +869,22 @@ function servicePage(service) {
     [`What does ${service.name.toLowerCase()} include?`, `Southwest Hauling handles lifting, loading, hauling, and cleanup for approved non-hazardous ${service.name.toLowerCase()} jobs.`],
     ["How do I get a quote?", `Call ${PHONE} or email photos and job details to ${EMAIL}. Photos help us quote the load and plan access.`]
   ]).map(([question, answer]) => ({ question, answer }));
+  const localService = neighborhoodServices.find((item) => item.service === service);
+  const directions = service === newServices[0] ? `<section class="section split">
+      <div><h2>Private or municipal bulk pickup?</h2><p>Check your city's bulk pickup eligibility, set-out rules, and accepted items if you can move the pieces curbside and work with the public schedule. Ask Southwest for a private quote when you need help carrying items out or want to arrange a pickup window directly.</p></div>
+      <div class="service-card"><h3>City pickup information</h3><ul class="check-list">
+        <li><a href="https://www.mesaaz.gov/Utilities/Trash-Recycling/Bulk-Item-Pick-up">Mesa bulk item pickup</a></li>
+        <li><a href="https://www.gilbertaz.gov/departments/public-works/solid-waste/trash-recycling-pickup-schedules">Gilbert bulk pickup schedule</a></li>
+        <li><a href="https://www.queencreekaz.gov/government/trash-recycling/trash/bulk-trash-collection">Queen Creek bulk trash collection</a></li>
+      </ul></div>
+    </section>` : service === newServices[1] ? `<section class="section services">
+      <div class="section-heading"><h2>Plan a cleanout around your handoff</h2></div>
+      <div class="service-grid">
+        <article><h3>Tenants and homeowners</h3><p>Send your move date and what will be left after the truck departs. Include garage, patio, and storage items.</p></article>
+        <article><h3>Agents and sellers</h3><p>Tell us which rooms need to be cleared before listing photos or the final walkthrough.</p></article>
+        <article><h3>Landlords and property managers</h3><p>Confirm approvals, unit access, loading instructions, and the next tenant's expected move-in date.</p></article>
+      </div>
+    </section>` : "";
   const stormMedia = isStorm ? `<section class="section storm-media">
       <div class="section-heading"><h2>Real East Valley storm cleanup project</h2><p>Actual Southwest project media showing damage, removal work, debris, and clean after conditions.</p></div>
       <div class="storm-feature">
@@ -902,6 +932,7 @@ function servicePage(service) {
       </div>
     </section>
     ${stormMedia}
+    ${directions}
     <section class="section why-choose">
       <div class="section-heading"><h2>Why choose Southwest Hauling?</h2><p>Local customers choose us for practical communication, fair pricing, and clean results.</p></div>
       <div class="why-grid">
@@ -919,6 +950,7 @@ function servicePage(service) {
       <div class="section-heading"><h2>Service areas for ${esc(service.name.toLowerCase())}</h2><p>Southwest Hauling serves these East Valley communities.</p></div>
       ${locationLinks()}
     </section>
+    ${localService ? localServiceCoverage(localService) : ""}
     <section class="section services">
       <div class="section-heading"><h2>${esc(service.name)} FAQs</h2><p>Quick answers before you request a quote.</p></div>
       <div class="service-grid">
@@ -935,7 +967,7 @@ function servicePage(service) {
     body,
     schema: [serviceSchema(service, route), faqSchema(pageFaqs)],
     heroImage: isStorm ? stormUrl(service.heroImage) : "/assets/hero-junk-removal.png",
-    heroVideo: isStorm ? "" : "/assets/southwest-hauling-hero-video-01-scroll.mp4"
+    heroVideo: isStorm || newServices.includes(service) ? "" : "/assets/southwest-hauling-hero-video-01-scroll.mp4"
   });
 }
 
@@ -995,6 +1027,7 @@ function handymanPage(service) {
       <div class="section-heading"><h2>Service areas for ${esc(service.name.toLowerCase())}</h2><p>Southwest Hauling serves these East Valley communities.</p></div>
       ${locationLinks("", service.areaLinkLabel)}
     </section>
+    ${localServiceCoverage(neighborhoodServices.find((item) => item.service === service))}
     <section class="section services">
       <div class="section-heading"><h2>${esc(service.name)} FAQs</h2><p>Quick answers before you request a quote.</p></div>
       <div class="service-grid">
@@ -1015,6 +1048,145 @@ function handymanPage(service) {
   });
 }
 
+function neighborhoodRoute(area) {
+  const city = locations.find((location) => location.city === area.city);
+  return `locations/${city.slug}/${area.slug}-junk-removal`;
+}
+
+function neighborhoodServiceRoute(area, item) {
+  return `${neighborhoodRoute(area)}/${item.slug}`;
+}
+
+function neighborhoodLinks(areas, item) {
+  return `<div class="area-links">${areas.map((area) => {
+    const route = item ? neighborhoodServiceRoute(area, item) : neighborhoodRoute(area);
+    const label = item ? `${area.name} · ${area.city}` : `${area.name} junk removal`;
+    return `<a href="/${route}">${esc(label)}</a>`;
+  }).join("")}</div>`;
+}
+
+function cityNeighborhoods(location, areas) {
+  const proof = location.city === "Gilbert" ? '<p>See <a href="/#before-after">before-and-after photos from our Gilbert hauling jobs</a>.</p>' : "";
+  return `<section class="section areas" id="neighborhoods">
+      <div class="section-heading"><h2>${esc(location.city)} neighborhoods we serve</h2><p>Find pickup options and quote details for your community.</p>${proof}</div>
+      ${neighborhoodLinks(areas)}
+    </section>`;
+}
+
+function localServiceCoverage(item) {
+  return `<section class="section areas">
+      <div class="section-heading"><h2>Find ${esc(item.name.toLowerCase())} near you</h2><p>Select your neighborhood for local pickup details.</p></div>
+      ${neighborhoodLinks(neighborhoods, item)}
+    </section>`;
+}
+
+function breadcrumbs(trail) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: trail.map(([name, route], i) => ({
+      "@type": "ListItem", position: i + 1, name, item: canonical(route)
+    }))
+  };
+  const html = `<nav class="section breadcrumbs" aria-label="Breadcrumb"><ol>${trail.map(([name, route], i) =>
+    i === trail.length - 1 ? `<li><span aria-current="page">${esc(name)}</span></li>` :
+      `<li><a href="${route === "/" ? "/" : `/${route}`}">${esc(name)}</a></li>`
+  ).join("")}</ol></nav>`;
+  return { html, schema };
+}
+
+function areaServiceSchema(area, name, route, description) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: `${name} in ${area.name}, ${area.city}, AZ`,
+    serviceType: name,
+    provider: { "@type": "LocalBusiness", name: BUSINESS, telephone: "+1-480-490-8033" },
+    areaServed: { "@type": "Place", name: area.name, containedInPlace: { "@type": "City", name: `${area.city}, Arizona` } },
+    url: canonical(route),
+    description
+  };
+}
+
+function neighborhoodTrail(area) {
+  const city = locations.find((location) => location.city === area.city);
+  return [["Home", "/"], [area.city, `locations/${city.slug}`], [area.name, neighborhoodRoute(area)]];
+}
+
+function neighborhoodQuote(area, name) {
+  return `${EMAIL_HREF}?subject=${encodeURIComponent(`${area.name}, ${area.city} - ${name} Quote`)}`;
+}
+
+function neighborhoodServiceCards(area, items) {
+  return `<div class="service-grid">${items.map((item) =>
+    `<article><h3><a href="/${neighborhoodServiceRoute(area, item)}">${esc(item.name)}</a></h3><p>${esc(item.job)}</p></article>`
+  ).join("")}</div>`;
+}
+
+function neighborhoodPage(area) {
+  const route = neighborhoodRoute(area);
+  const trail = breadcrumbs(neighborhoodTrail(area));
+  const quote = neighborhoodQuote(area, "Junk Removal");
+  const title = `Junk Removal in ${area.name}, ${area.city} AZ | Southwest Hauling`;
+  const featured = area.featured.map((key) => neighborhoodServices.find((item) => item.key === key));
+  const other = neighborhoodServices.filter((item) => !featured.includes(item));
+  const nearby = neighborhoods.filter((item) => item.city === area.city && item !== area);
+  const proof = area.city === "Gilbert" ? '<p>See <a href="/#before-after">before-and-after photos from Southwest hauling jobs around Gilbert</a>.</p>' : "";
+  const body = `${trail.html}
+    <section class="section split">
+      <div><h2>Plan a pickup in ${esc(area.name)}</h2><p>${esc(area.local)}</p>${proof}</div>
+      <div class="service-card"><h3>What to send for a quote</h3><p>${esc(area.quote)}</p><a class="button primary" href="${quote}">Email photos to Chris</a><a class="contact-link" href="/contact">Use the quote form</a></div>
+    </section>
+    <section class="section services">
+      <div class="section-heading"><h2>Featured services in ${esc(area.name)}</h2></div>
+      ${neighborhoodServiceCards(area, featured)}
+    </section>
+    <section class="section services">
+      <div class="section-heading"><h2>More services in ${esc(area.name)}</h2></div>
+      ${neighborhoodServiceCards(area, other)}
+    </section>
+    ${nearby.length ? `<section class="section areas"><div class="section-heading"><h2>Other ${esc(area.city)} neighborhoods</h2></div>${neighborhoodLinks(nearby)}</section>` : ""}
+    ${finalCta(`Send pickup photos and your ${area.name} address so we can confirm the scope and an available time.`, "Request a free hauling quote", quote)}`;
+  return layout({
+    route, title, description: area.intro, h1: `Junk Removal in ${area.name}, ${area.city}, AZ`,
+    intro: area.intro, body, quote, heroVideo: "",
+    schema: [areaServiceSchema(area, "Junk Removal", route, area.intro), trail.schema]
+  });
+}
+
+function neighborhoodServicePage(area, item) {
+  const route = neighborhoodServiceRoute(area, item);
+  const name = item.name;
+  const quote = neighborhoodQuote(area, name);
+  const trail = breadcrumbs([...neighborhoodTrail(area), [name, route]]);
+  const headline = `${name} in ${area.name}`;
+  const description = `${name} in ${area.name}, ${area.city}, AZ. ${item.job}`;
+  const use = item.context === "commercial"
+    ? `For a business, HOA, or managed property serving ${area.name}, tell us who is coordinating the job and whether access is shared with customers or residents.`
+    : `If your pickup is part of ${area[item.context]}, tell us what goes in this load and when the space needs to be ready.`;
+  const siblings = area.featured.filter((key) => key !== item.key).slice(0, 2)
+    .map((key) => neighborhoodServices.find((entry) => entry.key === key));
+  const body = `${trail.html}
+    <section class="section split">
+      <div><h2>What the service covers</h2><p>${esc(item.job)}</p><p>${esc(use)}</p><p>${esc(area.access)}</p></div>
+      <div class="service-card"><h3>How to prepare</h3><p>${esc(item.prepare)}</p><a class="button primary" href="${quote}">Email photos for a quote</a><a class="contact-link" href="/contact">Use the quote form</a></div>
+    </section>
+    <section class="section seo-content">
+      <h2>${esc(item.question)}</h2><p>${esc(item.answer)}</p>
+      <p>See <a href="/services/${item.service.slug}">${esc(item.service.name)} across the East Valley</a> or browse <a href="/${neighborhoodRoute(area)}">all services in ${esc(area.name)}</a>.</p>
+    </section>
+    <section class="section services">
+      <div class="section-heading"><h2>Related services in ${esc(area.name)}</h2></div>
+      ${neighborhoodServiceCards(area, siblings)}
+    </section>
+    ${finalCta(`Share your ${area.name} pickup address, photos, and access details so we can confirm the quote and availability.`, "Get a free quote", quote)}`;
+  return layout({
+    route, title: `${headline}, ${area.city} AZ | Southwest Hauling`, description,
+    h1: `${headline}, ${area.city}, AZ`, intro: item.job, body, quote, heroVideo: "",
+    schema: [areaServiceSchema(area, name, route, description), trail.schema]
+  });
+}
+
 function locationPage(location) {
   const route = `locations/${location.slug}`;
   const popular = services.filter((service) => popularServiceSlugs.includes(service.slug)).slice(0, 6);
@@ -1024,10 +1196,10 @@ function locationPage(location) {
       ${queenCreekAreaLinks()}
     </section>
     <section class="section services">
-      <div class="section-heading"><h2>Queen Creek local SEO focus areas</h2><p>Helpful service positioning for the highest-intent Queen Creek submarkets.</p></div>
+      <div class="section-heading"><h2>Junk removal around Queen Creek</h2><p>Find hauling options for homes, businesses, and larger properties.</p></div>
       <div class="service-grid">
         <article><span>01</span><h3>Dense family neighborhoods</h3><p>Ironwood Crossing, Harvest, Barney Farms, Hastings Farms, Cortina, Montelena, and Terravella are ideal for garage cleanouts, furniture removal, moving debris, and household junk pickup.</p></article>
-        <article><span>02</span><h3>Commercial and near-me corridors</h3><p>Queen Creek Town Center, the Heritage District, Downtown Queen Creek, Gateway Quarter, and Church Farm help connect the site to high-intent local and mobile searches.</p></article>
+        <article><span>02</span><h3>Commercial and near-me corridors</h3><p>Ask about office furniture, retail fixtures, and packing debris pickups around Town Center, the Heritage District, and Gateway Quarter.</p></article>
         <article><span>03</span><h3>Luxury, acreage, and estate jobs</h3><p>The Pecans, Whitewing, Bridle Ranch, Queen Creek Ranchettes, Encanterra, and Ovation at Meridian support higher-value cleanouts, downsizing, large-lot cleanup, and careful hauling.</p></article>
       </div>
     </section>` : "";
@@ -1043,6 +1215,7 @@ function locationPage(location) {
     "Tempe": "apartment, rental, office, and residential storm debris loads that need quick removal",
     "Scottsdale": "tree debris, patio debris, fence material, and storm cleanup loads for homes and commercial properties"
   };
+  const neighborhoodsInCity = neighborhoods.filter((area) => area.city === location.city);
   const body = `<section class="section split">
       <div>
         <h2>Local junk removal in ${esc(location.city)}</h2>
@@ -1100,6 +1273,7 @@ function locationPage(location) {
       <div class="section-heading"><h2>Related service links</h2><p>Explore common junk removal services for ${esc(location.city)} customers.</p></div>
       ${serviceCards([...services.slice(0, 8), handymanService])}
     </section>
+    ${neighborhoodsInCity.length ? cityNeighborhoods(location, neighborhoodsInCity) : ""}
     ${queenCreekHub}
     ${finalCta(`Call ${PHONE} or request a free quote for junk removal in ${location.city} AZ.`)}`;
   return layout({
@@ -1213,7 +1387,7 @@ function aliasPage(fromRoute, toRoute, label) {
 function updateHome() {
   const file = path.join(ROOT, "index.html");
   let html = fs.readFileSync(file, "utf8");
-  html = html.replace(/<title>[\s\S]*?(?=\s*<link rel="preconnect")/, metadata({
+  html = html.replace(/<title>[\s\S]*?(?=<link rel="preconnect")/, metadata({
     route: "/",
     title: "Junk Removal, Hauling & Handyman East Valley AZ | Southwest Hauling",
     description: "Southwest Hauling & Handyman Services provides fast junk removal, hauling, and handyman services for homes and businesses across Mesa, Gilbert, Queen Creek, Chandler, and San Tan Valley."
@@ -1240,6 +1414,7 @@ function updateHome() {
   if (stormStart !== -1 && servicesStart !== -1 && stormStart < servicesStart) {
     html = `${html.slice(0, stormStart)}${html.slice(servicesStart)}`;
   }
+  html = html.replace("SEO-friendly service pages for the most requested junk hauling jobs in Mesa, Gilbert, Queen Creek, Chandler, San Tan Valley, and nearby East Valley cities.", "Find hauling and cleanout help for homes and businesses across Mesa, Gilbert, Queen Creek, Chandler, San Tan Valley, and nearby cities.");
   const serviceGrid = `<div class="service-grid">
         ${services.map((service, index) => `<article><span>${String(index + 1).padStart(2, "0")}</span><h3><a href="/services/${service.slug}/">${esc(service.name)}</a></h3><p>${esc(service.hero)}</p></article>`).join("\n        ")}
       </div>`;
@@ -1282,13 +1457,15 @@ function updateHome() {
         </div>
       </section>`;
   html = html.replace(/<section class="section split homepage-storm">[\s\S]*?<\/section>\s*<section class="section seo-content"/, `<section class="section seo-content"`);
-  html = html.replace(/<div class="service-grid">\s*<article><span>01<\/span><h3><a href="\/services\/junk-removal-east-valley-az\/">[\s\S]*?<\/div>\s*<\/section>\s*<section class="section why-choose"/, `${serviceGrid}\n    </section>\n    <section class="section why-choose"`);
+  html = html.replace(/<div class="service-grid">\s*<article><span>01<\/span><h3><a href="\/services\/junk-removal-east-valley-az\/?">[\s\S]*?<\/div>\s*<\/section>\s*<section class="section why-choose"/, `${serviceGrid}\n    </section>\n    <section class="section why-choose"`);
   html = html.replace(/<\/section>\s*<section class="section services" id="services">/, `</section>
       ${stormSequence}
     <section class="section services" id="services">`);
-  html = html.replace(/<div class="area-links" aria-label="Service area links">[\s\S]*?<\/div>\s*<\/section>\s*<section class="section seo-content"/, `<div class="area-links" aria-label="Service area links">
+  html = html.replace(/<div class="area-links" aria-label="Service area links">[\s\S]*?<\/section>\s*<section class="section seo-content"/, `<div class="area-links" aria-label="Service area links">
         ${locations.map((location) => `<a href="/locations/${location.slug}/">${esc(location.city)} AZ junk removal</a>`).join("")}<a href="/contact/">Contact Southwest Hauling</a>
       </div>
+      <div class="section-heading neighborhood-heading"><h3>Featured neighborhoods</h3></div>
+      ${neighborhoodLinks(neighborhoods.slice(0, 5))}
     </section>
     <section class="section seo-content"`);
   const reviewsSection = `<section class="section google-reviews" id="reviews" data-google-reviews>
@@ -1316,7 +1493,7 @@ function updateHome() {
     </section>`;
   html = html.replace(/<section class="section (?:reviews|google-reviews)" id="reviews"[\s\S]*?<\/section>\s*<section class="section cta-section"/, `${reviewsSection}
       <section class="section cta-section"`);
-  fs.writeFileSync(file, html);
+  fs.writeFileSync(file, normalizePageLinks(html));
 }
 
 function sitemap() {
@@ -1327,7 +1504,11 @@ function sitemap() {
     { route: "contact", priority: "0.8" },
     ...services.map((service) => ({ route: `services/${service.slug}` })),
     ...locations.map((location) => ({ route: `locations/${location.slug}` })),
-    ...queenCreekAreas.map((area) => ({ route: `locations/queen-creek-az/${area.slug}` }))
+    ...queenCreekAreas.map((area) => ({ route: `locations/queen-creek-az/${area.slug}` })),
+    ...neighborhoods.flatMap((area) => [
+      { route: neighborhoodRoute(area) },
+      ...neighborhoodServices.map((item) => ({ route: neighborhoodServiceRoute(area, item) }))
+    ])
   ];
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -1343,6 +1524,11 @@ write("contact", contactPage());
 services.forEach((service) => write(`services/${service.slug}`, service === handymanService ? handymanPage(service) : servicePage(service)));
 locations.forEach((location) => write(`locations/${location.slug}`, locationPage(location)));
 queenCreekAreas.forEach((area) => write(`locations/queen-creek-az/${area.slug}`, queenCreekAreaPage(area)));
+
+neighborhoods.forEach((area) => {
+  write(neighborhoodRoute(area), neighborhoodPage(area));
+  neighborhoodServices.forEach((item) => write(neighborhoodServiceRoute(area, item), neighborhoodServicePage(area, item)));
+});
 
 [
   ["services/property-cleanout-east-valley-az", "services/property-cleanouts-east-valley-az", "Property Cleanouts East Valley AZ"],
