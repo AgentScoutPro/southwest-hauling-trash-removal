@@ -1539,6 +1539,37 @@ h3 {
   background: #fff8eb;
 }
 
+.neighborhood-heading {
+  margin-top: 2rem;
+}
+
+.breadcrumbs {
+  padding-block: 1.25rem;
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.65rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.breadcrumbs li + li::before {
+  content: "/";
+  padding-inline-end: 0.65rem;
+  opacity: 0.65;
+}
+
+.breadcrumbs a,
+.seo-content a,
+.service-card li a,
+.areas .section-heading p a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .seo-content {
   display: grid;
   gap: 24px;
